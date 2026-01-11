@@ -17,7 +17,7 @@
 
 body {
   font-family: var(--font-outfit), sans-serif;
-  background-color: var(--black-color);
+  background-color: var(--white);
   text-rendering: optimizeLegibility;
 }
 

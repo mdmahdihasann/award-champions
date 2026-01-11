@@ -1,8 +1,10 @@
+import Intro from "@/components/dashboard/Intro";
 
 export default function Home() {
   return (
-    <h1 className="text-4xl font-bold text-white bg-red-500 ">
-      Tailwind OK 🚀
-    </h1>
+    <div className="max-w-screen-sm mx-auto justify-between items-center py-6 px-4">
+      <Intro />
+    </div>
+
   );
 }

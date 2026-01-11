@@ -26,7 +26,6 @@ export default function LoginPage() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-
         const user = users.find((u) => u.employeeId === employeeId && u.password === password)
         if (user) {
             setAuth(user);
@@ -36,8 +35,6 @@ export default function LoginPage() {
         } else {
             toast.error("Invalid Employee ID or Password")
         }
-
-
     }
 
     return (
