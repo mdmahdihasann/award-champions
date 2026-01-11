@@ -1,51 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 :root {
-  --Lexend: "Lexend", sans-serif;
-  --poppins: "Poppins", sans-serif;
-  --primary-color: #0087a0;
-  --primary-two-color: #76c893;
-  --secondary-color: #ffa92c;
-  --secondary-two-color: #ffc570;
-  --black-color: #223344;
-  --bg-color: #fcfefe;
-  --border-light: #eff4fb;
-  --p-color: #777777;
+  --primary-color: #223344;
+  --primary-color-hover: #223344e5;
+  --black-color: #202020;
   --white: white;
-  --red: #ff4545;
 }
-
 
 body {
-  font-family: var(--poppins);
-  text-rendering: optimizeLegibility;
-  box-sizing: border-box;
+  font-family: var(--font-outfit), sans-serif;
   background-color: var(--black-color);
+  text-rendering: optimizeLegibility;
 }
-img {
-  width: 100%;
-}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--Lexend);
-  margin-bottom: 0;
+  font-family: var(--font-outfit), sans-serif;
 }
+
+img {
+  width: 100%;
+}
+
 a {
   text-decoration: none;
 }
+
 li {
   list-style: none;
 }
+
 p {
   margin-bottom: 0 !important;
 }

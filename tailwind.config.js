@@ -7,5 +7,10 @@ module.exports = {
   theme: {
     extend: {},
   },
+  extend: {
+    fontFamily: {
+      outfit: ["var(--font-outfit)"],
+    },
+  },
   plugins: [],
 };
