@@ -1,3 +1,4 @@
+import Footer from "@/components/common/Footer";
 import Header from "@/components/header/Header";
 
 
@@ -8,6 +9,7 @@ export default function MainLayout({ children }) {
       <main>
         {children}
       </main>
+      <Footer/>
     </>
   );
 }
