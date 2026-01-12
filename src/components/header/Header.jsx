@@ -1,17 +1,32 @@
-import Dropdown from "./Dropdown";
+"use client"
+import { useRouter } from "next/navigation";
+import { championshipData } from "../../database/championsData"
+import { useState } from "react";
+
 
 export default function Header() {
-
+    const router = useRouter();
+    const [show, setShow] = useState(false);
+    function handleSelect(e) {
+        const teamCode = e.target.value;
+        router.push(`/team?team=${teamCode}`)
+    }
     return (
-        <header className="bg-gray-800 shadow-md sticky top-0 z-50 m-auto">
-            <div className="max-w-screen-sm mx-auto flex justify-between items-center h-16 px-4">
-                <div className="text-white">
-                    <h6 className="font-semibold">ID: 0305943</h6>
-                    <span className="text-sm text-gray-300">Admin</span>
+        <header className="sticky top-0 z-10 min-h-30 h-full w-full border-b flex items-center py-3 bg-[--primary-color]">
+            <section className="wrapper flex items-center justify-between gap-2 relative">
+                <div className="flex flex-col gap-0">
+                    <h6 className="font-semibold text-white">ID: 0305943</h6>
+                    <div className="text-sm text-gray-300">Admin</div>
                 </div>
-                {/* Right: Team Dropdown */}
-                <Dropdown />
-            </div>
+                <select onChange={handleSelect} className="border p-2 rounded-md w-32 text-sm">
+                    <option value="">Select Team</option>
+                    {championshipData.teams.map((team) => (
+                        <option key={team.teamCode} value={team.teamCode}>
+                            {team.teamName}
+                        </option>
+                    ))}
+                </select>
+            </section>
         </header>
     );
 }

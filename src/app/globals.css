@@ -11,7 +11,10 @@
 :root {
   --primary-color: #223344;
   --primary-color-hover: #223344e5;
+  --bg-color: #ECF0F5;
+  --hover-color: #ECF0F5;
   --black-color: #202020;
+  --border-color: #B1C5D8;
   --white: white;
 }
 
@@ -44,4 +47,10 @@ li {
 
 p {
   margin-bottom: 0 !important;
+}
+.wrapper{
+  width: 100%;
+  max-width: 28rem;
+  padding-inline: .25rem;
+  margin-inline: auto;
 }
