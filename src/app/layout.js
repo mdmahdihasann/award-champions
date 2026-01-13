@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "@/provider/AuthProvider";
 import { AuthGuard } from "@/hooks/AuthGuard";
-import Header from "@/components/header/Header";
+
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",

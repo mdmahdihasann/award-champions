@@ -1,4 +1,4 @@
-import Table from "@/components/common/Table";
+import ZoneTable from "@/components/common/ZoneTable";
 
 
 
@@ -11,7 +11,7 @@ export default function TeamPage() {
           <h2 className="text-2xl font-bold text-gray-800">Zone</h2>
 
           <div className="bg-white rounded-xl border overflow-auto">
-            <Table />
+            <ZoneTable />
           </div>
 
         </div>

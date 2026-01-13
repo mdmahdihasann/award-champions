@@ -7,7 +7,7 @@ import Image from "next/image";
 import { championshipData } from "../../database/championsData.js"
 import { useSearchParams } from "next/navigation";
 
-const Table = () => {
+const ZoneTable = () => {
     const serachParams = useSearchParams();
     const teamCode = serachParams.get("team");
     const selectedTeam = championshipData.teams.find((team) => team.teamCode === teamCode);
@@ -15,7 +15,7 @@ const Table = () => {
         <table className="min-w-full text-sm font-medium border-collapse">
             <thead className="bg-[--primary-color] text-white">
                 <tr className="border text-center">
-                    <th className="px-1.5 py-2 border-x w-20">Zone</th>
+                    <th className="px-1.5 py-2 border-x w-24">Zone</th>
                     <th className="px-1.5 py-2 border-x">Rank Ach%</th>
                     <th className="px-1.5 py-2 border-x">Rank Over Avg Gr.%</th>
                     <th className="px-1.5 py-2 border-x">Cumulative Rank</th>
@@ -34,24 +34,21 @@ const Table = () => {
                         //top 3 toppy
                         const getPosition = () => {
                             if (index === 0) {
-                                return <Image src={FirstPlace} alt="1st Place" width={30} height={30} />;
+                                return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
                             } else if (index === 1) {
-                                return <Image src={SecondPlace} alt="2nd Place" width={30} height={30} />;
+                                return <Image src={SecondPlace} alt="2nd Place" width={20} height={20} />;
                             } else if (index === 2) {
-                                return <Image src={ThirdPlace} alt="3rd Place" width={30} height={30} />;
+                                return <Image src={ThirdPlace} alt="3rd Place" width={20} height={20} />;
                             }
                         }
 
                         return (
                             <tr key={index} className={`border text-center ${bgColor} hover:bg-gray-100 transition`}>
-                                {/* <td className="px-4 py-2 border relative">
-                                    <div className="flex items-center gap-2 justify-start">
-                                    <div className="absolute -left-4 z-10 w-6 bg-red-400 min-h-[100%]">{getPosition()}</div>
-                                    <span>{champion.zoneName}</span>
+                                <td className="px-2 py-2 border">
+                                    <div className="flex items-center gap-2 justify-between">
+                                        <div className="min-h-[100%]">{getPosition()}</div>
+                                        <span>{champion.zoneName}</span>
                                     </div>
-                                </td> */}
-                                <td className="px-4 py-2 border">
-                                    {champion.zoneName}
                                 </td>
                                 <td className="px-4 py-2 border">{champion?.achievementPercent}</td>
                                 <td className="px-4 py-2 border">{champion?.growthPercent}</td>
@@ -66,4 +63,4 @@ const Table = () => {
     )
 }
 
-export default Table
+export default ZoneTable

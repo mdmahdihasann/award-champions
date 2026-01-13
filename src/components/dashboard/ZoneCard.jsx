@@ -25,7 +25,7 @@ const ZoneCard = ({
             >
               {icon}
             </div>
-            <h3 className="text-sm text-gray-600 font-normal capitalize tracking-wide opacity-80">
+            <h3 className="text-sm font-normal text-gray-600 capitalize tracking-wide opacity-80">
               {title}
             </h3>
             <p className="text-2xl text-black font-semibold mt-1">{value}</p>
