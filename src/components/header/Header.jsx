@@ -1,15 +1,16 @@
 "use client"
 import { useRouter } from "next/navigation";
 import { championshipData } from "../../database/championsData"
-import { useState } from "react";
 
 
 export default function Header() {
     const router = useRouter();
-    const [show, setShow] = useState(false);
     function handleSelect(e) {
         const teamCode = e.target.value;
         router.push(`/team?team=${teamCode}`)
+        if (teamCode === "") {
+            router.push('/')
+        }
     }
     return (
         <header className="sticky top-0 z-10 min-h-30 h-full w-full border-b flex items-center py-3 bg-[--primary-color]">

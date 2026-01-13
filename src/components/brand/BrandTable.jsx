@@ -7,7 +7,7 @@ import Image from "next/image";
 import { championshipData } from "../../database/championsData.js"
 import { useSearchParams } from "next/navigation";
 
-const Table = () => {
+const BrandTable = ({SelectBrandData}) => {
     const serachParams = useSearchParams();
     const teamCode = serachParams.get("team");
     const selectedTeam = championshipData.teams.find((team) => team.teamCode === teamCode);
@@ -15,16 +15,15 @@ const Table = () => {
         <table className="min-w-full text-sm font-medium border-collapse">
             <thead className="bg-[--primary-color] text-white">
                 <tr className="border text-center">
-                    <th className="px-1.5 py-2 border-x w-20">Zone</th>
+                    <th className="px-1.5 py-2 border-x w-20">Territory</th>
                     <th className="px-1.5 py-2 border-x">Rank Ach%</th>
-                    <th className="px-1.5 py-2 border-x">Rank Over Avg Gr.%</th>
+                    <th className="px-1.5 py-2 border-x">Rank of Value</th>
                     <th className="px-1.5 py-2 border-x">Cumulative Rank</th>
                 </tr>
             </thead>
             <tbody>
                 {
-                    selectedTeam?.zones?.map((champion, index) => {
-                        { console.log(champion) }
+                    SelectBrandData?.tableData?.map((branData, index) => {
                         //top 3 row height light color
                         let bgColor = "";
                         if (index === 0) bgColor = "bg-yellow-100";
@@ -51,11 +50,11 @@ const Table = () => {
                                     </div>
                                 </td> */}
                                 <td className="px-4 py-2 border">
-                                    {champion.zoneName}
+                                    {branData.territory}
                                 </td>
-                                <td className="px-4 py-2 border">{champion?.achievementPercent}</td>
-                                <td className="px-4 py-2 border">{champion?.growthPercent}</td>
-                                <td className="px-4 py-2 border">{champion?.cumulativeRank}</td>
+                                <td className="px-4 py-2 border">{branData?.rankAchievement}</td>
+                                <td className="px-4 py-2 border">{branData?.rankOverAvgGrowth}</td>
+                                <td className="px-4 py-2 border">{branData?.cumulativeRank}</td>
                             </tr>
                         )
                     })
@@ -66,4 +65,4 @@ const Table = () => {
     )
 }
 
-export default Table
+export default BrandTable

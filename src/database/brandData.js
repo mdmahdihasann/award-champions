@@ -1,7 +1,7 @@
 export const brandData = [
     {
-        brandName: "Coralcal D",
-        brandCode: "CORALCAL_D",
+        brandName: "Coralcal",
+        brandCode: "CORALCAL",
         tableData: [
             { territory: "Dhaka North", rankAchievement: 1, rankOverAvgGrowth: 2, cumulativeRank: 3 },
             { territory: "Dhaka South", rankAchievement: 2, rankOverAvgGrowth: 3, cumulativeRank: 5 },
@@ -9,8 +9,8 @@ export const brandData = [
         ],
     },
     {
-        brandName: "Coralcal Dx",
-        brandCode: "CORALCAL_DX",
+        brandName: "Exium",
+        brandCode: "EXIUM",
         tableData: [
             { territory: "Narayanganj", rankAchievement: 1, rankOverAvgGrowth: 1, cumulativeRank: 2 },
             { territory: "Gazipur", rankAchievement: 2, rankOverAvgGrowth: 2, cumulativeRank: 4 },
@@ -18,8 +18,8 @@ export const brandData = [
         ],
     },
     {
-        brandName: "Coralcal Vita",
-        brandCode: "CORALCAL_VITA",
+        brandName: "Rivotril",
+        brandCode: "RIVOTRIL",
         tableData: [
             { territory: "Mirpur", rankAchievement: 1, rankOverAvgGrowth: 1, cumulativeRank: 2 },
             { territory: "Uttara", rankAchievement: 2, rankOverAvgGrowth: 2, cumulativeRank: 4 },
@@ -27,8 +27,8 @@ export const brandData = [
         ],
     },
     {
-        brandName: "Exium Mups",
-        brandCode: "EXIUM_MUPS",
+        brandName: "Gavirad",
+        brandCode: "GAVIRAD",
         tableData: [
             { territory: "Chattogram", rankAchievement: 1, rankOverAvgGrowth: 2, cumulativeRank: 3 },
             { territory: "Cumilla", rankAchievement: 2, rankOverAvgGrowth: 1, cumulativeRank: 3 },

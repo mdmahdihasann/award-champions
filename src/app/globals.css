@@ -31,6 +31,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-outfit), sans-serif;
+  font-weight: 600 !important;
 }
 
 img {
@@ -53,4 +54,8 @@ p {
   max-width: 28rem;
   padding-inline: .25rem;
   margin-inline: auto;
+}
+
+select option:first-child {
+  display: none;
 }
