@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { UseAuth } from "@/hooks/UseAuth";
 import SelectTeam from "./SelectTeam";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Header() {
     const router = useRouter();
@@ -46,7 +47,7 @@ export default function Header() {
                     </h6>
 
                     <div className="flex items-center gap-1 text-gray-200 text-xs">
-                        <span>Admin</span>
+                        <span className="capitalize">{auth?.role}</span>
                         <MdOutlineKeyboardArrowDown className="text-base" />
                     </div>
 
@@ -54,7 +55,7 @@ export default function Header() {
                         <div className="absolute left-0 mt-2 p-1 w-28 bg-white border border-gray-300 rounded-md shadow-lg z-50">
                             <button
                                 onClick={handleLogout}
-                                className="w-full text-left px-4 py-1 rounded-sm text-sm hover:bg-gray-100 transition"
+                                className="w-full text-left px-4 py-1 rounded-md text-sm hover:bg-gray-100 transition"
                             >
                                 Logout
                             </button>
@@ -63,7 +64,10 @@ export default function Header() {
                 </div>
 
                 {/* Team Selector */}
-                <SelectTeam />
+                {
+                    auth?.role === "admin" ? <SelectTeam /> : <FaUserCircle  className="text-white text-2xl"/>
+                }
+
 
             </section>
         </header>

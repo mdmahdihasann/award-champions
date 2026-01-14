@@ -8,9 +8,36 @@ import { UseAuth } from "@/hooks/UseAuth";
 
 
 export const users = [
-    { employeeId: "2589633", password: "12345678" },
-    { employeeId: "1478523", password: "abcd1234" },
+    {
+        employeeId: "9001",
+        password: "admin123",
+        role: "admin",
+        brandCode: "ALL",
+        territoryId: "ALL",
+    },
+    {
+        employeeId: "9101",
+        password: "mio123",
+        role: "mio",
+        brandCode: "CORALCAL",
+        territoryId: "T001",
+    },
+    {
+        employeeId: "9102",
+        password: "mio456",
+        role: "mio",
+        brandCode: "EXIUM",
+        territoryId: "T003",
+    },
+    {
+        employeeId: "9103",
+        password: "mio789",
+        role: "mio",
+        brandCode: "RIVOTRIL",
+        territoryId: "T006",
+    },
 ];
+
 
 
 export default function LoginPage() {

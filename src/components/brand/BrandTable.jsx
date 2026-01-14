@@ -44,10 +44,10 @@ const BrandTable = ({ SelectBrandData }) => {
                         return (
                             <tr key={index} className={`border text-center ${bgColor} hover:bg-gray-100 transition`}>
 
-                                <td className="px-1 py-2 border">
+                                <td className="px-4 py-2 border">
                                     <div className="flex items-center gap-2 justify-between">
                                         <div className="min-h-[100%]">{getPosition()}</div>
-                                        <span>{branData?.territory}</span>
+                                        <span>{branData?.territoryId}</span>
                                     </div>
                                 </td>
                                 <td className="px-4 py-2 border">{branData?.rankAchievement}</td>
