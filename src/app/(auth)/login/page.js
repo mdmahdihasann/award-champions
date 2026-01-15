@@ -14,7 +14,7 @@ export default function page() {
             <GiTrophy className="text-4xl text-[--primary-color]" />
           </div>
           <h1 className="text-xl font-semibold text-[--primary-color] text-gray-900">
-            ChampionshipHub
+            Award Championship
           </h1>
           <p className="text-muted-foreground text-gray-600 text-xs">
             Login with your credentials

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { brandData } from '@/database/brandData.js'
 import BrandTable from '@/components/brand/BrandTable'
 import BackButton from '@/components/brand/BackButton'
+import Pagination from '@/components/common/Pagination'
 
 const page = () => {
     const [activeBrand, setActiveBrand] = useState(null);
@@ -21,8 +22,11 @@ const page = () => {
                 <div className="border rounded-lg p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
                     <h2 className="text-2xl font-bold text-gray-800">{SelectBrandData?.brandName}</h2>
 
-                    <div className="bg-white rounded-xl border overflow-auto">
-                        <BrandTable SelectBrandData={SelectBrandData} />
+                    <div>
+                        <div className="bg-white rounded-xl border overflow-auto">
+                            <BrandTable SelectBrandData={SelectBrandData} />
+                        </div>
+                        <Pagination />
                     </div>
 
                 </div>

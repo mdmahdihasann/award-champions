@@ -1,3 +1,4 @@
+import Pagination from "@/components/common/Pagination";
 import ZoneTable from "@/components/common/ZoneTable";
 
 
@@ -10,8 +11,11 @@ export default function TeamPage() {
         <div className="border rounded-lg p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
           <h2 className="text-2xl font-bold text-gray-800">Zone</h2>
 
-          <div className="bg-white rounded-xl border overflow-auto">
-            <ZoneTable />
+          <div>
+            <div className="bg-white rounded-xl border overflow-auto">
+              <ZoneTable />
+            </div>
+            <Pagination />
           </div>
 
         </div>
