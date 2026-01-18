@@ -44,7 +44,7 @@ export default function Header() {
                     onClick={() => setIsProfileOpen((prev) => !prev)}
                 >
                     <h6 className="font-semibold text-white text-md">
-                        ID: {auth?.employeeId}
+                        ID: {auth?.work_area_t}
                     </h6>
 
                     <div className="flex items-center gap-1 text-gray-200 text-xs">
