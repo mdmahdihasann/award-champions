@@ -15,6 +15,7 @@ export default function Header() {
 
     const handleLogout = () => {
         setAuth(null);
+        localStorage.removeItem("authUser");
         router.push("/login");
     };
 

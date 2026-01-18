@@ -27,10 +27,10 @@ const ZoneTable = () => {
                     selectedTeam?.zones?.map((champion, index) => {
                         { console.log(champion) }
                         //top 3 row height light color
-                        let bgColor = "";
-                        if (index === 0) bgColor = "bg-yellow-100";
-                        else if (index === 1) bgColor = "bg-gray-100";
-                        else if (index === 2) bgColor = "bg-orange-100";
+                        // let bgColor = "";
+                        // if (index === 0) bgColor = "bg-yellow-100";
+                        // else if (index === 1) bgColor = "bg-gray-100";
+                        // else if (index === 2) bgColor = "bg-orange-100";
 
                         //top 3 toppy
                         const getPosition = () => {
@@ -46,7 +46,7 @@ const ZoneTable = () => {
                         }
 
                         return (
-                            <tr key={index} className={`border text-center ${bgColor} hover:bg-gray-100 transition`}>
+                            <tr key={index} className={`border text-center  hover:bg-gray-100 transition`}>
                                 <td className="px-3 py-2 border">
                                     <div className="min-h-[100%]">{getPosition()}</div>
                                 </td>

@@ -51,7 +51,7 @@ export default function LoginPage() {
         console.log(auth);
     }, [auth])
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         const user = users.find((u) => u.employeeId === employeeId && u.password === password)
         if (user.role === "admin") {
@@ -61,7 +61,7 @@ export default function LoginPage() {
             toast.success("Login Successfully")
         } else if (user.role === "mio") {
             setAuth(user);
-            router.push('/brand');
+            router.push('/m-brand');
             toast.success("Login Successfully")
         } else {
             toast.error("Invalid Employee ID or Password")

@@ -42,26 +42,21 @@ const BrandTable = ({ SelectBrandData }) => {
             className="relative overflow-y-auto max-h-[400px] border border-gray-300"
         >
             <table className="min-w-full text-[13px] border-collapse w-full">
-                {/* Sticky header */}
                 <thead className="bg-[--primary-color] text-white sticky top-0">
                     <tr className="border text-center">
-                        <th className="px-1.5 py-2 border-x border-gray-500 font-semibold w-12">No.</th>
-                        <th className="px-1.5 py-2 border-x border-gray-500 font-semibold w-16">Territory</th>
-                        <th className="px-1.5 py-2 border-x border-gray-500 font-semibold">Rank Ach%</th>
-                        <th className="px-1.5 py-2 border-x border-gray-500 font-semibold">Rank of Value</th>
-                        <th className="px-1.5 py-2 border-x border-gray-500 font-semibold">Cumulative Rank</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold w-12">No.</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold w-16">Territory</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold">Rank Ach%</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold">Rank of Value</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold">Cumulative Rank</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {SelectBrandData?.tableData?.map((brandData, index) => {
-                        // top 3
-                        let bgColor = "";
-                        if (index === 0) bgColor = "bg-yellow-100";
-                        else if (index === 1) bgColor = "bg-gray-100";
-                        else if (index === 2) bgColor = "bg-orange-100";
 
-                        // Get position icon
+
+                        // Madel icon
                         const getPosition = () => {
                             if (index === 0) return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
                             if (index === 1) return <Image src={SecondPlace} alt="2nd Place" width={20} height={20} />;
@@ -88,7 +83,7 @@ const BrandTable = ({ SelectBrandData }) => {
                         }
 
                         return (
-                            <tr key={index} className={`border text-center ${bgColor} hover:bg-gray-100 transition`}>
+                            <tr key={index} className={`border text-center hover:bg-gray-100 transition`}>
                                 <td className="px-3 py-2 border">{getPosition()}</td>
                                 <td className="px-4 py-2 border">{brandData?.territoryId}</td>
                                 <td className="px-4 py-2 border">{brandData?.rankAchievement}</td>
