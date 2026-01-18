@@ -33,8 +33,8 @@ export default function Header() {
 
 
     return (
-        <header className="sticky top-0 z-20 min-h-20 w-full flex items-center border-b bg-[--primary-color]">
-            <section className="wrapper flex items-center justify-between py-3 relative">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-[--primary-color]">
+            <section className="wrapper flex items-center justify-between py-3 relative min-h-20">
 
                 {/* User Info */}
                 <div

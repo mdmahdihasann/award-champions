@@ -20,7 +20,7 @@ export const users = [
         password: "mio123",
         role: "mio",
         brandCode: "CORALCAL",
-        territoryId: "T001",
+        territoryId: "T011",
     },
     {
         employeeId: "9102",
@@ -54,10 +54,14 @@ export default function LoginPage() {
     const handleLogin = (e) => {
         e.preventDefault();
         const user = users.find((u) => u.employeeId === employeeId && u.password === password)
-        if (user) {
+        if (user.role === "admin") {
             setAuth(user);
             router.push('/');
             console.log(auth);
+            toast.success("Login Successfully")
+        } else if (user.role === "mio") {
+            setAuth(user);
+            router.push('/brand');
             toast.success("Login Successfully")
         } else {
             toast.error("Invalid Employee ID or Password")

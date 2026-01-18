@@ -5,11 +5,11 @@ import { useEffect } from 'react'
 
 const BrandButton = ({ setActiveBrand, activeBrand }) => {
 
-    useEffect(()=>{
-        if(brandData?.length){
+    useEffect(() => {
+        if (brandData?.length) {
             setActiveBrand(brandData[0].brandCode)
         }
-    },[])
+    }, [])
 
     return (
         <>

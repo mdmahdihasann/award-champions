@@ -8,7 +8,7 @@ export default function teamLayout({ children }) {
     const router = useRouter();
     return (
         <>
-            <section className="wrapper max-w-screen-sm mx-auto px-4 py-2 mt-4">
+            <section className="wrapper max-w-screen-sm mx-auto px-4 py-2 mt-2">
                 <div className="flex gap-4 justify-end">
 
                     <Button className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition">
@@ -22,9 +22,9 @@ export default function teamLayout({ children }) {
                     </Button>
                 </div>
             </section>
-            <main>
+            <section>
                 {children}
-            </main>
+            </section>
         </>
     );
 }

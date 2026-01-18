@@ -7,7 +7,7 @@ export default function MainLayout({ children }) {
     <>
       <div className="flex flex-col min-h-screen">
         <Header />
-        <main className="flex-1">
+        <main className="min-h-[calc(100vh-140px)] mt-[5.2rem]">
           {children}
         </main>
         <Footer className="mt-auto" />
