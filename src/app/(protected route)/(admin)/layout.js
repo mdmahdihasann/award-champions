@@ -10,12 +10,11 @@ export default function AdminLayout({ children }) {
   const { auth } = UseAuth();
 
   useEffect(() => {
-    
-    if (!auth){
+
+    if (!auth) {
       router.replace('/login')
     }
-    const adminRoles = "admin";
-    if (!adminRoles.includes(auth?.role)){
+    if (!auth?.work_area_t === "admin") {
       router.replace("/m-brand")
       return;
     }

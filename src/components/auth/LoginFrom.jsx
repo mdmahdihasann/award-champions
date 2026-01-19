@@ -10,73 +10,52 @@ import axios from "axios";
 
 export const users = [
     {
-        work_area_t: "9001",
-        password: "admin123",
-        role: "admin",
-        brandCode: "ALL",
-        territoryId: "ALL",
-    },
-    {
-        work_area_t: "9101",
-        password: "mio123",
-        role: "mio",
-        brandCode: "CORALCAL",
-        territoryId: "T011",
-    },
-    {
-        work_area_t: "9102",
-        password: "mio456",
-        role: "mio",
-        brandCode: "EXIUM",
-        territoryId: "T003",
-    },
-    {
-        work_area_t: "9103",
-        password: "mio789",
-        role: "mio",
-        brandCode: "RIVOTRIL",
-        territoryId: "T006",
-    },
+        work_area_t: "admin",
+        password: "admin@chq#789",
+        team: ""
+    }
 ];
 
-
-
-export default function LoginPage() {
+export default function LoginFrom() {
     const router = useRouter();
     const [work_area_t, setWork_area_t] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const { auth, setAuth } = UseAuth();
+    const { setAuth } = UseAuth();
 
-    useEffect(() => {
-        console.log(auth);
-    }, [auth])
+    
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        // const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,{
-        //     work_area_t,
-        //     password,
-        //     team: ""
-        // })
-        // console.log(response.data);
-        
+        try {
 
-        const user = users.find((u) => u.work_area_t === work_area_t && u.password === password)
-        if (user?.role === "admin") {
-            setAuth(user);
-            router.push('/');
-            console.log(auth);
-            toast.success("Login Successfully")
-        } else if (user?.role === "mio") {
-            setAuth(user);
-            router.push('/m-brand');
-            toast.success("Login Successfully")
-        } else {
-            toast.error("Invalid Employee ID or Password")
+            if (work_area_t !== "admin") {
+                const res = await axios.post(
+                    `${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,
+                    { work_area_t, password, team: null }
+                );
+
+                if (res.status === 200) {
+                    console.log(res.data);
+                    setAuth(res.data);
+                    toast.success("Login Successfully");
+                    router.push("/m-brand");
+                }
+                return;
+            }
+
+            const adminUser = { work_area_t, password, team: null };
+            setAuth(adminUser);
+            toast.success("Login Successfully");
+            router.push("/");
+        } catch (error) {
+            console.log(error.message);
+            toast.error("Invalid ID or Password");
         }
-    }
+    };
+
+
 
     return (
         <form className="space-y-4" onSubmit={handleLogin}>
@@ -105,6 +84,7 @@ export default function LoginPage() {
                     type={showPassword ? "text" : "password"}
                     className="w-full rounded-lg border border-gray-300 px-4 py-[7px] text-gray-900 focus:outline-none focus:border-blue-600 transition pr-12"
                 />
+                {/* eye button */}
                 <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}

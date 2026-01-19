@@ -4,17 +4,27 @@ const { useState, useEffect } = require("react")
 
 
 const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState(null);
+    const [auth, setAuth] = useState(null); 
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const stored = localStorage.getItem("authUser");
-        if (stored) setAuth(JSON.parse(stored));
+        const stored = sessionStorage.getItem("authUser");
+        if (stored) {
+            setAuth(JSON.parse(stored));
+        } else {
+            setAuth(null);
+        }
+        setLoading(false); 
     }, []);
 
     useEffect(() => {
-        if (auth) localStorage.setItem("authUser", JSON.stringify(auth));
-        else localStorage.removeItem("authUser");
+        if (auth !== null) {
+            if (auth) sessionStorage.setItem("authUser", JSON.stringify(auth));
+            else sessionStorage.removeItem("authUser");
+        }
     }, [auth]);
+
+    if (loading) return null;
 
     return (
         <AuthContext.Provider value={{ auth, setAuth }}>

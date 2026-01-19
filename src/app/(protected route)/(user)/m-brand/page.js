@@ -5,7 +5,7 @@ import React from 'react'
 import { brandData } from '@/database/brandData.js'
 import { UseAuth } from '@/hooks/UseAuth'
 
-const uioBrandPage = () => {
+const mioBrandPage = () => {
     const { auth } = UseAuth();
     const SelectBrandData = brandData.find((bc) => bc?.brandCode === auth?.brandCode);
 
@@ -19,4 +19,4 @@ const uioBrandPage = () => {
     )
 }
 
-export default uioBrandPage
+export default mioBrandPage

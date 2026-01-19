@@ -15,7 +15,7 @@ export default function Header() {
 
     const handleLogout = () => {
         setAuth(null);
-        localStorage.removeItem("authUser");
+        sessionStorage.removeItem("authUser");
         router.push("/login");
     };
 
@@ -44,11 +44,11 @@ export default function Header() {
                     onClick={() => setIsProfileOpen((prev) => !prev)}
                 >
                     <h6 className="font-semibold text-white text-md">
-                        ID: {auth?.work_area_t}
+                        {auth?.data?.name}
                     </h6>
 
                     <div className="flex items-center gap-1 text-gray-200 text-xs">
-                        <span className="capitalize">{auth?.role}</span>
+                        <span className="capitalize">{auth?.data?.work_area_t}</span>
                         <MdOutlineKeyboardArrowDown className="text-base" />
                     </div>
 
@@ -66,7 +66,7 @@ export default function Header() {
 
                 {/* Team Selector */}
                 {
-                    auth?.role === "admin" ? <SelectTeam /> : <FaUserCircle  className="text-white text-2xl"/>
+                    auth?.work_area_t === "admin" ? <SelectTeam /> : <FaUserCircle className="text-white text-2xl" />
                 }
 
 

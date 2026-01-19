@@ -1,4 +1,4 @@
-import LoginPage from "@/components/auth/LoginPage";
+import LoginFrom from "@/components/auth/LoginFrom";
 import { GiTrophy } from "react-icons/gi";
 
 export default function page() {
@@ -21,7 +21,7 @@ export default function page() {
           </p>
         </div>
         {/* Form */}
-        <LoginPage/>
+        <LoginFrom/>
       </div>
     </div>
   );

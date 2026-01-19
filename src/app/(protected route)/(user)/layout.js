@@ -15,7 +15,7 @@ export default function UserLayout({ children }) {
     if (!auth) {
       router.replace('/login')
     }
-    if (auth?.role !== "mio") {
+    if (auth?.work_area_t === "admin") {
       router.replace("/")
       return;
     }

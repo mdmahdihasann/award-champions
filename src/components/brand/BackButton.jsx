@@ -1,13 +1,13 @@
 "use client"
 
 import Button from '../common/Button'
-import { IoChevronBackOutline } from "react-icons/io5";
+import { MdArrowBack } from "react-icons/md";
 import { useRouter } from 'next/navigation';
 
 const BackButton = () => {
     const router = useRouter();
     return (
-        <Button onClick={() => router.back()} className='bg-[--bg-color] border border-[--border-color] w-10 mb-5 hover:bg-[--primary-color] hover:border-[--primary-color] transition text-black hover:text-white flex items-center justify-center'><IoChevronBackOutline className='rounded'/>
+        <Button onClick={() => router.back()} className='flex gap-2 text-sm px-2 bg-[--bg-color] w-24 border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center mb-5 transition'><MdArrowBack className='rounded' /> Go Back
         </Button>
     )
 }
