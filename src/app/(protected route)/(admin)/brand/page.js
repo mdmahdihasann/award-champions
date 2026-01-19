@@ -21,7 +21,7 @@ const page = () => {
 
             <section className='wrapper max-w-screen-sm mx-auto pt-2 pb-4'>
                 <div className="border rounded-lg p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
-                    <h2 className="text-2xl font-medium text-gray-800">{SelectBrandData?.brandName}</h2>
+                    <h2 className="text-2xl font-semibold text-gray-800">{SelectBrandData?.brandName}</h2>
 
                     <div>
                         <div className="bg-white rounded-xl border overflow-auto">

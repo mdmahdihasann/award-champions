@@ -12,7 +12,7 @@ const ZoneTable = () => {
     const teamCode = serachParams.get("team");
     const selectedTeam = championshipData.teams.find((team) => team.teamCode === teamCode);
     return (
-        <table className="min-w-full text-[13px] border-collapse">
+        <table className="min-w-full text-[12px] border-collapse">
             <thead className="bg-[--primary-color] text-white">
                 <tr className="border text-center">
                     <th className="px-1.5 py-2 border-x font-semibold w-12">No.</th>

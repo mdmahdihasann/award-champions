@@ -44,11 +44,11 @@ const BrandTable = ({ SelectBrandData }) => {
             <table className="min-w-full text-[12px] border-collapse w-full">
                 <thead className="bg-[--primary-color] text-white sticky top-0">
                     <tr className="border text-center">
-                        <th className="px-1.5 py-3 border-x border-gray-500 font-medium w-12">No.</th>
-                        <th className="px-1.5 py-3 border-x border-gray-500 font-medium w-16">Territory</th>
-                        <th className="px-1.5 py-3 border-x border-gray-500 font-medium">Rank Ach%</th>
-                        <th className="px-1.5 py-3 border-x border-gray-500 font-medium">Rank of Value</th>
-                        <th className="px-1.5 py-3 border-x border-gray-500 font-medium">Cumulative Rank</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold w-12">No.</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold w-16">Territory</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold">Rank Ach%</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold">Rank of Value</th>
+                        <th className="px-1.5 py-3 border-x border-gray-500 font-semibold">Cumulative Rank</th>
                     </tr>
                 </thead>
 
