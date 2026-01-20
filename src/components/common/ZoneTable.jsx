@@ -15,7 +15,7 @@ const ZoneTable = () => {
     return (
         <div
 
-            className="relative overflow-y-auto max-h-[400px] border border-gray-300"
+            className="relative overflow-y-auto max-h-[400px] border"
         >
             <table className="min-w-full text-[12px] border-collapse w-full">
                 <thead className="bg-[--primary-color] text-white sticky top-0">
