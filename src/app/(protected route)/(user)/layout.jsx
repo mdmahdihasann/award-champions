@@ -19,6 +19,6 @@ export default function UserLayout({ children }) {
       router.replace("/")
       return;
     }
-  }, [])
+  }, [auth])
   return <>{children}</>;
 }

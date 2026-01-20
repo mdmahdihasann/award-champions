@@ -2,7 +2,9 @@
 import BackButton from '@/components/brand/BackButton'
 import Button from '@/components/common/Button';
 import UserInfo from '@/components/common/UserInfo';
+import { ContentLoading } from '@/components/Loading';
 import { usePathname, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import { RiBuildingLine } from "react-icons/ri";
 
 export default function TeamBrandLayout({ children }) {
@@ -23,7 +25,9 @@ export default function TeamBrandLayout({ children }) {
 
 
         </div>
-        <UserInfo />
+        <Suspense fallback={<ContentLoading />}>
+          <UserInfo />
+        </Suspense>
       </section>
 
       <section>

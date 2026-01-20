@@ -1,4 +1,7 @@
 'use client'
+
+import { PageLoading } from "@/components/Loading";
+
 const { AuthContext } = require("@/context");
 const { useState, useEffect } = require("react")
 
@@ -7,6 +10,7 @@ const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(null);
     const [loading, setLoading] = useState(true);
     const [selectedTeam, setSelectedTeam] = useState(null);
+    
 
     useEffect(() => {
         const storedAuth = sessionStorage.getItem("authUser");
@@ -32,7 +36,9 @@ const AuthProvider = ({ children }) => {
         else sessionStorage.removeItem("selectedTeam");
     }, [selectedTeam]);
 
-    if (loading) return null;
+    if (loading) {
+        return <PageLoading/>
+    };
 
     return (
         <AuthContext.Provider value={{ auth, setAuth, selectedTeam, setSelectedTeam }}>

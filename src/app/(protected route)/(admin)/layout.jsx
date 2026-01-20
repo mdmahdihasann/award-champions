@@ -18,7 +18,7 @@ export default function AdminLayout({ children }) {
       router.replace("/m-brand")
       return;
     }
-  }, [])
+  }, [auth])
   return (
     <>
       {children}

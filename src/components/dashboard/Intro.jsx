@@ -17,7 +17,7 @@ export default function Intro() {
                     title="Total Zones"
                     value="40"
                     change={"85.5%"}
-                    changeType="up"
+                    changeType="dn"
                     icon={<FaLocationDot />
                     }
                     iconColor="text-white"
@@ -25,7 +25,7 @@ export default function Intro() {
                 />
                 <DashboardStatCard
                     title="Brand Champion"
-                    value="40"
+                    value="100"
                     change={"85.5%"}
                     changeType="up"
                     icon={<FaAward />
@@ -36,7 +36,7 @@ export default function Intro() {
                 />
                 <DashboardStatCard
                     title="Top MIOs"
-                    value="40"
+                    value="300"
                     change={"85.5%"}
                     changeType="up"
                     icon={<FaUserTie />
@@ -46,9 +46,9 @@ export default function Intro() {
                 />
                 <DashboardStatCard
                     title="Total Rewards"
-                    value="40"
+                    value="20"
                     change={"85.5%"}
-                    changeType="up"
+                    changeType="dn"
                     icon={<TbCoinTakaFilled />
 
                     }

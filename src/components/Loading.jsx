@@ -1,11 +1,15 @@
 export const PageLoading = () => {
     return <>
-        <span class="pageloader"></span>
+        <main className="min-h-dvh flex flex-col items-center justify-center p-4">
+            <span className="pageloader"></span>
+        </main>
     </>
 }
 
 export const ContentLoading = () => {
     return <>
-        <span class="contentloader"></span>
+        <main className="min-h-dvh flex flex-col items-center justify-center p-4">
+            <span className="contentloader"></span>
+        </main>
     </>
 }
