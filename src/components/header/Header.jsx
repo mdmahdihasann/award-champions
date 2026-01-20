@@ -9,12 +9,14 @@ import { FaUserCircle } from "react-icons/fa";
 
 export default function Header() {
     const router = useRouter();
-    const { setAuth, auth } = UseAuth();
+    const { setAuth, auth, setSelectedTeam } = UseAuth();
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const profileRef = useRef(null);
 
     const handleLogout = () => {
         setAuth(null);
+        setSelectedTeam(null);
+        sessionStorage.removeItem("selectedTeam");
         sessionStorage.removeItem("authUser");
         router.push("/login");
     };
@@ -44,11 +46,15 @@ export default function Header() {
                     onClick={() => setIsProfileOpen((prev) => !prev)}
                 >
                     <h6 className="font-semibold text-white text-md">
-                        {auth?.data?.name}
+                        {
+                            auth?.data?.role === "user" ? auth?.data?.name : "Admin"
+                        }
                     </h6>
 
                     <div className="flex items-center gap-1 text-gray-200 text-xs">
-                        <span className="capitalize">{auth?.data?.work_area_t}</span>
+                        <span className="capitalize">{
+                            auth?.data?.role === "user" ? auth?.data?.work_area_t : "19204"
+                        }</span>
                         <MdOutlineKeyboardArrowDown className="text-base" />
                     </div>
 
@@ -66,7 +72,7 @@ export default function Header() {
 
                 {/* Team Selector */}
                 {
-                    auth?.work_area_t === "admin" ? <SelectTeam /> : <FaUserCircle className="text-white text-2xl" />
+                    auth?.data?.role !== "user" ? <SelectTeam /> : <FaUserCircle className="text-white text-2xl" />
                 }
 
 

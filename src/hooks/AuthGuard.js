@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { UseAuth } from "./UseAuth";
+import { UseAuth } from "@/hooks/UseAuth";
 
 export const AuthGuard = ({ children }) => {
     const { auth } = UseAuth();

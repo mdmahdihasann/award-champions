@@ -1,8 +1,8 @@
 export const championshipData = {
   teams: [
     {
-      teamCode: "RPL_GEN_A",
-      teamName: "A",
+      teamCode: "A",
+      teamName: "Team A",
       totalZones: 4,
       zones: [
         {
@@ -36,8 +36,8 @@ export const championshipData = {
       ],
     },
     {
-      teamCode: "RPL_GEN_B",
-      teamName: "B",
+      teamCode: "B",
+      teamName: "Team B",
       totalZones: 2,
       zones: [
         {
@@ -57,8 +57,8 @@ export const championshipData = {
       ],
     },
     {
-      teamCode: "RPL_CARDIO_DIABETIC",
-      teamName: "C",
+      teamCode: "C",
+      teamName: "Team C",
       totalZones: 1,
       zones: [
         {
@@ -71,8 +71,8 @@ export const championshipData = {
       ],
     },
     {
-      teamCode: "RNL",
-      teamName: "RNL",
+      teamCode: "N",
+      teamName: "Team RNL",
       totalZones: 2,
       zones: [
         {

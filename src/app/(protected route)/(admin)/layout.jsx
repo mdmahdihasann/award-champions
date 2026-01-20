@@ -19,5 +19,9 @@ export default function AdminLayout({ children }) {
       return;
     }
   }, [])
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+    </>
+  )
 }

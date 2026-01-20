@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -12,8 +12,8 @@ export const users = [
     {
         work_area_t: "admin",
         password: "admin@chq#789",
-        team: ""
     }
+
 ];
 
 export default function LoginFrom() {
@@ -23,7 +23,7 @@ export default function LoginFrom() {
     const [showPassword, setShowPassword] = useState(false);
     const { setAuth } = UseAuth();
 
-    
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -38,7 +38,11 @@ export default function LoginFrom() {
 
                 if (res.status === 200) {
                     console.log(res.data);
-                    setAuth(res.data);
+                    const authData = {
+                        ...res.data,
+                        brandCode: "CORALCAL" //extra data for ui
+                    };
+                    setAuth(authData);
                     toast.success("Login Successfully");
                     router.push("/m-brand");
                 }

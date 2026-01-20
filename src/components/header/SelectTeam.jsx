@@ -11,7 +11,7 @@ export default function TeamSelect() {
     const router = useRouter();
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("Select Team");
-    const { auth, setAuth } = UseAuth();
+    const { auth, setSelectedTeam } = UseAuth();
     const ref = useRef(null);
 
     const handleSelect = async (team) => {
@@ -20,10 +20,10 @@ export default function TeamSelect() {
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/user/login`, {
                 ...auth,
-                team: team.teamName
+                team: team.teamCode
             })
-            if(response.status === 200){
-                setAuth(response?.data)
+            if (response.status === 200) {
+                setSelectedTeam(response?.data)
             }
 
         } catch (error) {

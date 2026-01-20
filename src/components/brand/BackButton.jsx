@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 const BackButton = () => {
     const router = useRouter();
     return (
-        <Button onClick={() => router.back()} className='flex gap-2 text-sm px-2 bg-[--bg-color] w-24 border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center mb-5 transition'><MdArrowBack className='rounded' /> Go Back
+        <Button onClick={() => router.back()} className='flex gap-2 text-sm px-2 bg-[--bg-color] w-24 border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center mb-[23px] transition'><MdArrowBack className='rounded' /> Go Back
         </Button>
     )
 }

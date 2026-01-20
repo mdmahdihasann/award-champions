@@ -3,19 +3,17 @@ import BrandButton from '@/components/brand/BrandButton'
 import { useState } from 'react'
 import { brandData } from '@/database/brandData.js'
 import BrandTable from '@/components/brand/BrandTable'
-import BackButton from '@/components/brand/BackButton'
 import Pagination from '@/components/common/Pagination'
 
-const page = () => {
+const BrandSection = () => {
     const [activeBrand, setActiveBrand] = useState(null);
     const SelectBrandData = brandData.find((bc) => bc.brandCode === activeBrand);
 
     return (
         <>
-            <section className='wrapper max-w-screen-sm mx-auto p-4 mt-2'>
-                <BackButton />
+            <section className='wrapper max-w-screen-sm mx-auto p-4'>
                 <div className='grid grid-cols-4 gap-2'>
-                    <BrandButton setActiveBrand={setActiveBrand} activeBrand={activeBrand}/>
+                    <BrandButton setActiveBrand={setActiveBrand} activeBrand={activeBrand} />
                 </div>
             </section>
 
@@ -36,4 +34,4 @@ const page = () => {
     )
 }
 
-export default page
+export default BrandSection
