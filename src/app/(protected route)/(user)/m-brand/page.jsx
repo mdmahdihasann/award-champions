@@ -7,7 +7,10 @@ import { UseAuth } from '@/hooks/UseAuth'
 
 const mioBrandPage = () => {
     const { auth } = UseAuth();
-    const SelectBrandData = brandData.find((bc) => bc?.brandCode === auth?.brandCode);
+    const BrandData = brandData.find((bc) => bc?.brandCode === auth?.brandCode);
+    const SelectBrandData = BrandData?.tableData?.sort((a, b) => b.cumulativeRank - a.cumulativeRank);
+ 
+    
 
     return (
         <section className='wrapper max-w-screen-sm mx-auto pt-2 pb-4 mt-2'>

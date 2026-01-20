@@ -39,7 +39,7 @@ const BrandTable = ({ SelectBrandData }) => {
     return (
         <div
             ref={containerRef}
-            className="relative overflow-y-auto max-h-[400px] border border-gray-300"
+            className="relative  overflow-y-auto max-h-[400px] border border-gray-300"
         >
             <table className="min-w-full text-[12px] border-collapse w-full">
                 <thead className="bg-[--primary-color] text-white sticky top-0">
@@ -53,7 +53,7 @@ const BrandTable = ({ SelectBrandData }) => {
                 </thead>
 
                 <tbody>
-                    {SelectBrandData?.tableData?.map((brandData, index) => {
+                    {SelectBrandData?.map((brandData, index) => {
 
 
                         // Madel icon
@@ -65,7 +65,7 @@ const BrandTable = ({ SelectBrandData }) => {
                         };
 
                         // Special row for mio
-                        if (brandData.territoryId === auth?.territoryId) {
+                        if (brandData.territoryId === auth?.data?.work_area_t) {
                             return (
                                 <tr
                                     key={index}
