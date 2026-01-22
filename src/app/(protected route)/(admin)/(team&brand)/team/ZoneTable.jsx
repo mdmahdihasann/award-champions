@@ -1,10 +1,10 @@
 "use client";
 
-import FirstPlace from "../../../public/price/1st-place.png"
-import SecondPlace from "../../../public/price/2nd-place.png"
-import ThirdPlace from "../../../public/price/3rd-place.png"
+import FirstPlace from "../../../../../../public/price/1st-place.png"
+import SecondPlace from "../../../../../../public/price/2nd-place.png"
+import ThirdPlace from "../../../../../../public/price/3rd-place.png"
 import Image from "next/image";
-import { championshipData } from "../../database/championsData.js"
+import { championshipData } from "../../../../../database/championsData.js"
 import { useSearchParams } from "next/navigation";
 
 const ZoneTable = () => {

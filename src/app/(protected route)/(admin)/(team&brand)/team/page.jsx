@@ -1,5 +1,5 @@
 import Pagination from "@/components/common/Pagination";
-import ZoneTable from "@/components/common/ZoneTable";
+import ZoneTable from "@/app/(protected route)/(admin)/(team&brand)/team/ZoneTable";
 
 
 export const metadata = {

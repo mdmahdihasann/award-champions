@@ -22,8 +22,6 @@ export default function TeamBrandLayout({ children }) {
               Brand
             </Button></div> : ""
           }
-
-
         </div>
         <Suspense fallback={<ContentLoading />}>
           <UserInfo />
