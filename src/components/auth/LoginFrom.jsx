@@ -40,7 +40,7 @@ export default function LoginFrom() {
                     console.log(res.data);
                     const authData = {
                         ...res.data,
-                        brandCode: "CORALCAL" //extra data for ui
+                        brandCode: "CORALCAL" //extra data for ui   
                     };
                     setAuth(authData);
                     toast.success("Login Successfully");

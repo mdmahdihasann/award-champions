@@ -6,6 +6,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { UseAuth } from "@/hooks/UseAuth";
 import SelectTeam from "./SelectTeam";
 import { FaUserCircle } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 export default function Header() {
     const router = useRouter();
@@ -19,6 +20,7 @@ export default function Header() {
         sessionStorage.removeItem("selectedTeam");
         sessionStorage.removeItem("authUser");
         router.push("/login");
+        toast.success("Logout Successfully")
     };
 
     /* ---------- Close profile dropdown on outside click ---------- */
