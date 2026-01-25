@@ -5,25 +5,14 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { championshipData } from "@/database/championsData";
 import { UseAuth } from "@/hooks/UseAuth";
-import { useState } from "react";
 
 const SelectTeam = () => {
   const router = useRouter();
   const { auth, setSelectedTeam } = UseAuth();
-  const [selected, setSelected] = useState(null);
 
   const handleSelect = async (teamCode) => {
-    
-    const team = championshipData.teams.find(
-      (t) => t.teamCode === teamCode
-    );
-
-    if (!team) return;
-
-    setSelected(team.teamName);
-
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,
         {
           ...auth,
@@ -31,14 +20,13 @@ const SelectTeam = () => {
         }
       );
 
-      if (response.status === 200) {
-        setSelectedTeam(response.data);
+      if (res.status === 200) {
+        setSelectedTeam(res.data);
+        router.push(`/zone?team=${teamCode}`);
       }
     } catch (error) {
-      console.log(error.message);
+      console.error("Team select failed:", error);
     }
-
-    router.push(`/zone?team=${teamCode}`);
   };
 
   return (
@@ -46,7 +34,6 @@ const SelectTeam = () => {
       <Select
         placeholder="Select team"
         style={{ width: 120, height: 36 }}
-        value={selected}
         onChange={handleSelect}
         options={championshipData.teams.map((team) => ({
           value: team.teamCode,

@@ -4,10 +4,12 @@ import FirstPlace from "../../../../../../public/price/1st-place.png"
 import SecondPlace from "../../../../../../public/price/2nd-place.png"
 import ThirdPlace from "../../../../../../public/price/3rd-place.png"
 import Image from "next/image";
+import { ContentLoading } from "@/components/Loading";
 
 
-const ZoneTable = ({ zoneData }) => {
-
+const Table = ({ zoneData, page, perPage, loading }) => {
+    // Loading 
+    if (loading) return <ContentLoading />;
     return (
         <div
 
@@ -25,10 +27,10 @@ const ZoneTable = ({ zoneData }) => {
                 </thead>
                 <tbody>
                     {
-                        zoneData?.quarter?.map((champion, index) => {
+                        zoneData?.map((champion, index) => {
 
                             //top 3 toppy
-                            const serialNumber = ((zoneData?.page || 1) - 1) * (zoneData?.per_page || 10) + index + 1;
+                            const serialNumber = ((page || 1) - 1) * (perPage || 10) + index + 1;
 
                             // Top 3 images
                             const getPosition = () => {
@@ -61,4 +63,4 @@ const ZoneTable = ({ zoneData }) => {
     )
 }
 
-export default ZoneTable
+export default Table;
