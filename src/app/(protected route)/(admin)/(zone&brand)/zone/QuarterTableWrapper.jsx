@@ -48,7 +48,7 @@ const QuaterTableWrapper = () => {
     <div className="flex flex-col">
       {/* Table */}
       <div className="bg-white rounded-xl border overflow-auto">
-        <ZoneTable zoneData={zoneData?.quarter} />
+        <ZoneTable zoneData={zoneData} />
       </div>
 
       {/* Pagination */}

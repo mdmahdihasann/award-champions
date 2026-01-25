@@ -25,7 +25,7 @@ const ZoneTable = ({ zoneData }) => {
                 </thead>
                 <tbody>
                     {
-                        zoneData?.map((champion, index) => {
+                        zoneData?.quarter?.map((champion, index) => {
 
                             //top 3 toppy
                             const serialNumber = ((zoneData?.page || 1) - 1) * (zoneData?.per_page || 10) + index + 1;

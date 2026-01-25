@@ -10,7 +10,7 @@ const PaginationSection = ({ current, total, pageSize, onChange }) => {
 
       <Pagination
         size="small"
-        current={current}
+        current={current || 0}
         total={total}
         pageSize={pageSize}
         onChange={onChange}
