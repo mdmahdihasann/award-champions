@@ -8,7 +8,7 @@ export const PageLoading = () => {
 
 export const ContentLoading = () => {
     return <>
-        <main className="min-h-dvh flex flex-col items-center justify-center p-4">
+        <main className="h-[436px] flex flex-col items-center justify-center p-4">
             <span className="contentloader"></span>
         </main>
     </>

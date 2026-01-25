@@ -1,18 +1,20 @@
+"use client";
 import { Pagination } from "antd";
 
-const showTotal = (total) => `Total ${total} items`;
-
-const PaginationSection = () => {
+const PaginationSection = ({ current, total, pageSize, onChange }) => {
   return (
-    <div className="flex justify-between items-center w-full mt-4">
-      <div className="text-gray-700 text-sm">
-        {showTotal(30)}
-      </div>
+    <div className="flex justify-between items-center mt-4">
+      <span className="text-sm text-gray-600">
+        Total {total} items
+      </span>
 
       <Pagination
         size="small"
-        total={30}
-        className="pagination-custom"
+        current={current}
+        total={total}
+        pageSize={pageSize}
+        onChange={onChange}
+        showSizeChanger={false}
       />
     </div>
   );

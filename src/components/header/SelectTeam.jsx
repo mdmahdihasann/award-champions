@@ -38,7 +38,7 @@ const SelectTeam = () => {
       console.log(error.message);
     }
 
-    router.push(`/team?team=${teamCode}`);
+    router.push(`/zone?team=${teamCode}`);
   };
 
   return (
