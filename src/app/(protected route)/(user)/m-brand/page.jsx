@@ -1,6 +1,6 @@
 'use client'
 import BrandTable from '@/components/brand/BrandTable'
-import Pagination from '@/components/common/Pagination'
+import Pagination from '@/components/common/PaginationSection'
 import React from 'react'
 import { brandData } from '@/database/brandData.js'
 import { UseAuth } from '@/hooks/UseAuth'

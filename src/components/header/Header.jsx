@@ -1,18 +1,16 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { UseAuth } from "@/hooks/UseAuth";
 import SelectTeam from "./SelectTeam";
 import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { Dropdown } from "antd";
 
 export default function Header() {
     const router = useRouter();
     const { setAuth, auth, setSelectedTeam } = UseAuth();
-    const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const profileRef = useRef(null);
 
     const handleLogout = () => {
         setAuth(null);
@@ -23,17 +21,7 @@ export default function Header() {
         toast.success("Logout Successfully")
     };
 
-    /* ---------- Close profile dropdown on outside click ---------- */
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (profileRef.current && !profileRef.current.contains(event.target)) {
-                setIsProfileOpen(false);
-            }
-        };
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
 
 
 
@@ -42,35 +30,35 @@ export default function Header() {
             <section className="wrapper flex items-center justify-between py-3 relative min-h-20">
 
                 {/* User Info */}
-                <div
-                    ref={profileRef}
-                    className="relative cursor-pointer"
-                    onClick={() => setIsProfileOpen((prev) => !prev)}
-                >
-                    <h6 className="font-semibold text-white text-md">
-                        {
-                            auth?.data?.role === "user" ? auth?.data?.name : "Admin"
-                        }
-                    </h6>
-
-                    <div className="flex items-center gap-1 text-gray-200 text-xs">
-                        <span className="capitalize">{
-                            auth?.data?.role === "user" ? auth?.data?.work_area_t : "19204"
-                        }</span>
-                        <MdOutlineKeyboardArrowDown className="text-base" />
-                    </div>
-
-                    {isProfileOpen && (
-                        <div className="absolute left-0 mt-2 p-1 w-28 bg-white border border-gray-300 rounded-md shadow-lg z-50">
+                <Dropdown
+                    trigger={["click"]}
+                    popupRender={() => (
+                        <div className="p-1 w-24 bg-white border border-gray-300 rounded-md shadow-lg">
                             <button
                                 onClick={handleLogout}
-                                className="w-full text-left px-4 py-1 rounded-md text-sm hover:bg-gray-100 transition"
+                                className="w-full text-left px-4 py-1 rounded-sm text-sm hover:bg-gray-100 transition"
                             >
                                 Logout
                             </button>
                         </div>
                     )}
-                </div>
+                >
+                    <div className="cursor-pointer select-none">
+                        <h6 className="font-semibold text-white text-md">
+                            {auth?.data?.role === "user" ? auth?.data?.name : "Admin"}
+                        </h6>
+
+                        <div className="flex items-center gap-1 text-gray-200 text-xs">
+                            <span className="capitalize">
+                                {auth?.data?.role === "user"
+                                    ? auth?.data?.work_area_t
+                                    : "19204"}
+                            </span>
+                            <MdOutlineKeyboardArrowDown className="text-base" />
+                        </div>
+                    </div>
+                </Dropdown>
+
 
                 {/* Team Selector */}
                 {

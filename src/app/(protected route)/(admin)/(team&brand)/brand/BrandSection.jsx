@@ -3,7 +3,7 @@ import BrandButton from '@/components/brand/BrandButton'
 import { useState } from 'react'
 import { brandData } from '@/database/brandData.js'
 import BrandTable from '@/components/brand/BrandTable'
-import Pagination from '@/components/common/Pagination'
+import Pagination from '@/components/common/PaginationSection'
 
 const BrandSection = () => {
     const [activeBrand, setActiveBrand] = useState(null);

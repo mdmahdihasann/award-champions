@@ -1,4 +1,4 @@
-import Pagination from "@/components/common/Pagination";
+import Pagination from "@/components/common/PaginationSection";
 import ZoneTable from "@/app/(protected route)/(admin)/(team&brand)/team/ZoneTable";
 
 

@@ -124,7 +124,12 @@ select option:first-child {
 .contentloader::after {
   animation-delay: 1s;
 }
-
+.ant-select-placeholder{
+  color: var(--primary-color) !important;
+}
+.ant-select-suffix{
+  color: var(--primary-color) !important;
+}
 @keyframes animloader {
   0% {
     transform: scale(0);
@@ -135,4 +140,17 @@ select option:first-child {
     transform: scale(1);
     opacity: 0;
   }
+}
+
+
+.pagination-custom .ant-pagination-item {
+  @apply bg-white text-gray-800 rounded-md;
+}
+
+.pagination-custom .ant-pagination-item-active {
+  @apply bg-gray-200 text-white rounded-md;
+}
+
+.pagination-custom .ant-pagination-item:hover {
+  @apply bg-purple-200;
 }
