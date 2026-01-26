@@ -36,11 +36,11 @@ const AuthProvider = ({ children }) => {
 
 
     if (loading) {
-        return <PageLoading/>
+        return <PageLoading />
     };
 
     return (
-        <AuthContext.Provider value={{ auth, setAuth, selectedTeam, setSelectedTeam }}>
+        <AuthContext.Provider value={{ auth, setAuth, selectedTeam, setSelectedTeam, loading, setLoading }}>
             {children}
         </AuthContext.Provider>
     )

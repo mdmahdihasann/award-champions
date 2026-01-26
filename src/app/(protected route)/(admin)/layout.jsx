@@ -7,18 +7,20 @@ import { useEffect } from "react";
 
 export default function AdminLayout({ children }) {
   const router = useRouter();
-  const { auth } = UseAuth();
+  const { auth, loading } = UseAuth();
 
   useEffect(() => {
 
-    if (!auth) {
+    if (!loading && !auth) {
       router.replace('/login')
     }
-    if (!auth?.work_area_t === "admin") {
+    if (!loading && !auth?.work_area_t === "admin") {
       router.replace("/m-brand")
       return;
     }
-  }, [auth])
+  }, [auth, loading])
+  if(loading) return null;
+  if(!auth) return null;
   return (
     <>
       {children}

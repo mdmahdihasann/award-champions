@@ -11,81 +11,108 @@ const MonthTableWrapper = () => {
 
   const [zoneData, setZoneData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
 
-  const perPage = zoneData?.data?.per_page || 10;
+  // Quarter pagination
+  const [quarterPage, setQuarterPage] = useState(1);
+  const quarterPerPage = zoneData?.per_page || 10;
 
-  // Reset page when zoneData selectedTeam
+  // Month pagination
+  const [monthPage, setMonthPage] = useState(1);
+  const monthPerPage = zoneData?.per_page_m || 10;
+
+  // Reset when team changes
   useEffect(() => {
     if (selectedTeam) {
-      setPage(1);
+      setQuarterPage(1);
+      setMonthPage(1);
       setZoneData(null);
     }
   }, [selectedTeam]);
 
-  // Fetch Performance Data
+  // Fetch data
   useEffect(() => {
     if (!selectedTeam) return;
 
     const fetchPerformanceData = async () => {
       setLoading(true);
       try {
-        const { data, status } = await axios.get(
+        const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_BASE_URL}/reports/performance`,
           {
             params: {
               work_area_t: selectedTeam?.data?.work_area_t,
               designation_id: selectedTeam?.data?.designation_id,
               gm_code: selectedTeam?.data?.gm_code,
-              page,
-              per_page: perPage,
+
+              page: quarterPage,
+              per_page: quarterPerPage,
+
+              page_m: monthPage,
+              per_page_m: monthPerPage,
             },
           }
         );
-
-        if (status === 200) {
-          console.log(data);
-          
-          setZoneData(data);
-        }
-      } catch (error) {
-        console.error("Error fetching performance data:", error);
+        
+        setZoneData(data);
+      } catch (err) {
+        console.error(err);
       } finally {
         setLoading(false);
       }
     };
 
     fetchPerformanceData();
-  }, [selectedTeam, page, perPage]);
+  }, [selectedTeam, quarterPage, monthPage]);
 
-  //Table + Pagination section
-  const renderTableSection = (title, data) => (
-
-
+  // reusable section
+  const renderTableSection = ({
+    title,
+    rows,
+    page,
+    setPage,
+    perPage,
+    total,
+  }) => (
     <div className="border rounded-xl p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
-      
       <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
-      <div className="flex flex-col">
-        {/* Table */}
-        <div className="bg-white rounded-xl border overflow-auto">
-          <Table zoneData={data} page={zoneData?.page} perPage={zoneData?.per_page} loading={loading} />
-        </div>
 
-        {/* Pagination */}
-        <Pagination
-          current={zoneData?.page || 0}
-          total={zoneData?.total_items || 0}
-          pageSize={zoneData?.per_page || 10}
-          onChange={setPage}
+      <div className="bg-white rounded-xl border overflow-auto">
+        <Table
+          zoneData={rows}
+          page={page}
+          perPage={perPage}
+          loading={loading}
         />
       </div>
+
+      <Pagination
+        current={page}
+        total={total}
+        pageSize={perPage}
+        onChange={setPage}
+      />
     </div>
   );
 
   return (
     <>
-      {renderTableSection("Zone Performance (Quarter)", zoneData?.quarter)}
-      {renderTableSection("Zone Performance (Current Month)", zoneData?.month)}
+      {renderTableSection({
+        title: "Zone Performance (Quarter)",
+        rows: zoneData?.quarter,
+        page: quarterPage,
+        setPage: setQuarterPage,
+        perPage: quarterPerPage,
+        total: zoneData?.total_items || 0,
+      })}
+
+      {renderTableSection({
+        title: "Zone Performance (Current Month)",
+        rows: zoneData?.month,
+        page: monthPage,
+        setPage: setMonthPage,
+        perPage: monthPerPage,
+        total: zoneData?.total_items_m || 0,
+      })}
     </>
   );
 };
