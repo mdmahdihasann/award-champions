@@ -22,9 +22,6 @@ export default function Header() {
     };
 
 
-
-
-
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-[--primary-color]">
             <section className="wrapper flex items-center justify-between py-3 relative min-h-20">
@@ -52,7 +49,7 @@ export default function Header() {
                             <span className="capitalize">
                                 {auth?.data?.role === "user"
                                     ? auth?.data?.work_area_t
-                                    : "19204"}
+                                    : "Admin Dashboard"}
                             </span>
                             <MdOutlineKeyboardArrowDown className="text-base" />
                         </div>

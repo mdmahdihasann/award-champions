@@ -44,6 +44,8 @@ const MonthTableWrapper = () => {
         );
 
         if (status === 200) {
+          console.log(data);
+          
           setZoneData(data);
         }
       } catch (error) {
@@ -58,7 +60,10 @@ const MonthTableWrapper = () => {
 
   //Table + Pagination section
   const renderTableSection = (title, data) => (
+
+
     <div className="border rounded-xl p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
+      
       <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
       <div className="flex flex-col">
         {/* Table */}
