@@ -5,7 +5,7 @@ import React from 'react'
 import { brandData } from '@/database/brandData.js'
 import { UseAuth } from '@/hooks/UseAuth'
 
-const mioBrandPage = () => {
+const MioBrandPage = () => {
     const { auth } = UseAuth();
     const BrandData = brandData.find((bc) => bc?.brandCode === auth?.brandCode);
     const SelectBrandData = BrandData?.tableData?.sort((a, b) => b.cumulativeRank - a.cumulativeRank);
@@ -22,4 +22,4 @@ const mioBrandPage = () => {
     )
 }
 
-export default mioBrandPage
+export default MioBrandPage

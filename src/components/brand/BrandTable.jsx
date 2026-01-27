@@ -7,7 +7,7 @@ import SecondPlace from "../../../public/price/2nd-place.png";
 import ThirdPlace from "../../../public/price/3rd-place.png";
 import Image from "next/image";
 
-const BrandTable = ({ SelectBrandData }) => {
+const BrandTable = ({ SelectBrandData, page, perPage }) => {
     const { auth } = UseAuth();
     const containerRef = useRef(null);
     const rowRef = useRef(null);
@@ -55,17 +55,17 @@ const BrandTable = ({ SelectBrandData }) => {
                 <tbody>
                     {SelectBrandData?.map((brandData, index) => {
 
+                        // siriyal number
+                        const serialNumber = ((page || 1) - 1) * (perPage || 10) + index + 1;
 
                         // Madel icon
                         const getPosition = () => {
-                            if (index === 0) return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
-                            if (index === 1) return <Image src={SecondPlace} alt="2nd Place" width={20} height={20} />;
-                            if (index === 2) return <Image src={ThirdPlace} alt="3rd Place" width={20} height={20} />;
-                            return index + 1;
+                            if (brandData?.medal === true) return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
+                            return serialNumber;
                         };
 
                         // Special row for mio
-                        if (brandData.territoryId === auth?.data?.work_area_t) {
+                        if (brandData.territory === auth?.data?.work_area_t) {
                             return (
                                 <tr
                                     key={index}
@@ -85,10 +85,10 @@ const BrandTable = ({ SelectBrandData }) => {
                         return (
                             <tr key={index} className={`border text-center hover:bg-gray-100 transition`}>
                                 <td className="px-3 py-2 border">{getPosition()}</td>
-                                <td className="px-4 py-2 border">{brandData?.territoryId}</td>
-                                <td className="px-4 py-2 border">{brandData?.rankAchievement}</td>
-                                <td className="px-4 py-2 border">{brandData?.rankOverAvgGrowth}</td>
-                                <td className="px-4 py-2 border">{brandData?.cumulativeRank}</td>
+                                <td className="px-4 py-2 border">{brandData?.territory}</td>
+                                <td className="px-4 py-2 border">{brandData?.ach_rank}</td>
+                                <td className="px-4 py-2 border">{brandData?.sales_rank}</td>
+                                <td className="px-4 py-2 border">{brandData?.cum_rank}</td>
                             </tr>
                         );
                     })}
