@@ -2,7 +2,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "@/provider/AuthProvider";
-import { AuthGuard } from "@/hooks/AuthGuard";
+import { AuthGuard } from "@/components/AuthGuard";
 
 const outfit = Outfit({
   subsets: ["latin"],

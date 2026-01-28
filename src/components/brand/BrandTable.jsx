@@ -1,14 +1,13 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { UseAuth } from "@/hooks/UseAuth";
-import FirstPlace from "../../../public/price/1st-place.png";
-import SecondPlace from "../../../public/price/2nd-place.png";
-import ThirdPlace from "../../../public/price/3rd-place.png";
+import { useAuth } from "@/hooks/useAuth";
+import FirstPlace from "../../../public/price/medal.png";
 import Image from "next/image";
+import { ContentLoading } from "../Loading";
 
-const BrandTable = ({ SelectBrandData, page, perPage }) => {
-    const { auth } = UseAuth();
+const BrandTable = ({ brandTableData, page, perPage, loading, error }) => {
+    const { auth } = useAuth();
     const containerRef = useRef(null);
     const rowRef = useRef(null);
     const [isSticky, setIsSticky] = useState(false);
@@ -31,11 +30,13 @@ const BrandTable = ({ SelectBrandData, page, perPage }) => {
         };
 
         const container = containerRef.current;
-        container.addEventListener("scroll", handleScroll);
+        container?.addEventListener("scroll", handleScroll);
 
-        return () => container.removeEventListener("scroll", handleScroll);
+        return () => container?.removeEventListener("scroll", handleScroll);
     }, []);
 
+    if(loading) return <ContentLoading/>
+    if(error) return <div className="p-4 text-center text-red-400">Failed to load data</div>
     return (
         <div
             ref={containerRef}
@@ -53,7 +54,7 @@ const BrandTable = ({ SelectBrandData, page, perPage }) => {
                 </thead>
 
                 <tbody>
-                    {SelectBrandData?.map((brandData, index) => {
+                    {brandTableData?.map((brandData, index) => {
 
                         // siriyal number
                         const serialNumber = ((page || 1) - 1) * (perPage || 10) + index + 1;

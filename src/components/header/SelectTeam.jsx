@@ -4,11 +4,11 @@ import { Select, Space } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { championshipData } from "@/database/championsData";
-import { UseAuth } from "@/hooks/UseAuth";
+import { useAuth } from "@/hooks/useAuth";
 
 const SelectTeam = () => {
   const router = useRouter();
-  const { auth, setSelectedTeam } = UseAuth();
+  const { auth, setSelectedTeam } = useAuth();
 
   const handleSelect = async (teamCode) => {
     try {

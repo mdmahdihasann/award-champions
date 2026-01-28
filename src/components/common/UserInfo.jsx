@@ -1,8 +1,8 @@
-import { UseAuth } from "@/hooks/UseAuth";
+import { useAuth } from "@/hooks/useAuth";
 
 
 const UserInfo = () => {
-    const { selectedTeam } = UseAuth();
+    const { selectedTeam } = useAuth();
 ;    return (
         <div className="border rounded-xl p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
             <div className="flex flex-col gap-1.5">

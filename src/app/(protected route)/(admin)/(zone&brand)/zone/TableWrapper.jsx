@@ -2,32 +2,39 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { UseAuth } from "@/hooks/UseAuth";
+import { useAuth } from "@/hooks/useAuth";
 import Table from "@/app/(protected route)/(admin)/(zone&brand)/zone/Table";
 import Pagination from "@/components/common/PaginationSection";
+import { Space, Switch } from 'antd';
 
 const MonthTableWrapper = () => {
-  const { selectedTeam } = UseAuth();
+  const { selectedTeam } = useAuth();
+  const [isCheck, setIsCheck] = useState(false);
 
   const [zoneData, setZoneData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // Quarter pagination
-  const [quarterPage, setQuarterPage] = useState(1);
-  const quarterPerPage = zoneData?.per_page || 10;
+  const [Page, setPage] = useState(1);
+  const quarterPerPage = isCheck === true ? zoneData?.per_page : zoneData?.per_page_m || 10;
 
-  // Month pagination
-  const [monthPage, setMonthPage] = useState(1);
-  const monthPerPage = zoneData?.per_page_m || 10;
+  const tableData = isCheck === true ? zoneData?.quarter : zoneData?.month;
+
 
   // Reset when team changes
   useEffect(() => {
     if (selectedTeam) {
-      setQuarterPage(1);
-      setMonthPage(1);
-      setZoneData(null);
+      setPage(1);
+      setIsCheck(false)
     }
   }, [selectedTeam]);
+
+  // Reset when month and current changes
+  useEffect(()=>{
+    if(isCheck){
+      setPage(1)
+    }
+  },[isCheck])
 
   // Fetch data
   useEffect(() => {
@@ -44,15 +51,15 @@ const MonthTableWrapper = () => {
               designation_id: selectedTeam?.data?.designation_id,
               gm_code: selectedTeam?.data?.gm_code,
 
-              page: quarterPage,
+              page: Page,
               per_page: quarterPerPage,
 
-              page_m: monthPage,
-              per_page_m: monthPerPage,
+              page_m: Page,
+              per_page_m: quarterPerPage,
             },
           }
         );
-        
+
         setZoneData(data);
       } catch (err) {
         console.error(err);
@@ -62,57 +69,39 @@ const MonthTableWrapper = () => {
     };
 
     fetchPerformanceData();
-  }, [selectedTeam, quarterPage, monthPage]);
+  }, [selectedTeam, Page, quarterPerPage]);
 
-  // reusable section
-  const renderTableSection = ({
-    title,
-    rows,
-    page,
-    setPage,
-    perPage,
-    total,
-  }) => (
-    <div className="border rounded-xl p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
-      <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
 
-      <div className="bg-white rounded-xl border overflow-auto">
-        <Table
-          zoneData={rows}
-          page={page}
-          perPage={perPage}
-          loading={loading}
-        />
-      </div>
-
-      <Pagination
-        current={page}
-        total={total}
-        pageSize={perPage}
-        onChange={setPage}
-      />
-    </div>
-  );
 
   return (
     <>
-      {renderTableSection({
-        title: "Zone Performance (Quarter)",
-        rows: zoneData?.quarter,
-        page: quarterPage,
-        setPage: setQuarterPage,
-        perPage: quarterPerPage,
-        total: zoneData?.total_items || 0,
-      })}
+      <div className="border rounded-xl p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
+        <div className="flex justify-between">
+          <h2 className="text-xl font-semibold text-gray-800">Zone Performance <span className='text-sm font-medium text-red-400'>({isCheck ? "Current Month" : "Quarter"})</span></h2>
+          <div>
+            <Space vertical>
+              <Switch checkedChildren="Month" unCheckedChildren="Quarter" defaultChecked checked={isCheck} onChange={() => setIsCheck(!isCheck)} />
+            </Space>
+          </div>
+        </div>
 
-      {renderTableSection({
-        title: "Zone Performance (Current Month)",
-        rows: zoneData?.month,
-        page: monthPage,
-        setPage: setMonthPage,
-        perPage: monthPerPage,
-        total: zoneData?.total_items_m || 0,
-      })}
+
+        <div className="bg-white rounded-xl border overflow-auto">
+          <Table
+            zoneData={tableData}
+            page={Page}
+            perPage={quarterPerPage}
+            loading={loading}
+          />
+        </div>
+
+        <Pagination
+          current={Page || 0}
+          total={zoneData?.total_items || 0}
+          pageSize={quarterPerPage}
+          onChange={setPage}
+        />
+      </div>
     </>
   );
 };

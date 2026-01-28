@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { UseAuth } from "@/hooks/UseAuth";
+import { useAuth } from "@/hooks/useAuth";
 import SelectTeam from "./SelectTeam";
 import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
@@ -10,7 +10,7 @@ import { Dropdown } from "antd";
 
 export default function Header() {
     const router = useRouter();
-    const { setAuth, auth, setSelectedTeam } = UseAuth();
+    const { setAuth, auth, setSelectedTeam } = useAuth();
 
     const handleLogout = () => {
         setAuth(null);

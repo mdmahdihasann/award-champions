@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { UseAuth } from "@/hooks/UseAuth";
+import { useAuth } from "@/hooks/useAuth";
 import axios from "axios";
 
 
@@ -21,7 +21,7 @@ export default function LoginFrom() {
     const [work_area_t, setWork_area_t] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const { setAuth } = UseAuth();
+    const { setAuth } = useAuth();
 
 
 

@@ -1,14 +1,14 @@
 "use client"
 
 
-import { UseAuth } from "@/hooks/UseAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 
 export default function UserLayout({ children }) {
   const router = useRouter();
-  const { auth } = UseAuth();
+  const { auth } = useAuth();
 
   useEffect(() => {
 

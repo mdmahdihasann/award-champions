@@ -3,13 +3,14 @@ import BrandTable from '@/components/brand/BrandTable'
 import Pagination from '@/components/common/PaginationSection'
 import React from 'react'
 import { brandData } from '@/database/brandData.js'
-import { UseAuth } from '@/hooks/UseAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 const MioBrandPage = () => {
-    const { auth } = UseAuth();
+    const { auth } = useAuth();
     const BrandData = brandData.find((bc) => bc?.brandCode === auth?.brandCode);
     const SelectBrandData = BrandData?.tableData?.sort((a, b) => b.cumulativeRank - a.cumulativeRank);
- 
+    
+
     
 
     return (
