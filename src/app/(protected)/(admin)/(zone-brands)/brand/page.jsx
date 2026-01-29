@@ -1,4 +1,4 @@
-import BrandSection from "./BrandSection"
+import BrandSection from "../../../../../components/brand/BrandSection"
 
 export const metadata = {
     title: "Brand - Award ChampoinShip",

@@ -14,13 +14,13 @@ export default function AdminLayout({ children }) {
     if (!loading && !auth) {
       router.replace('/login')
     }
-    if (!loading && !auth?.work_area_t === "admin") {
+    if (!loading && auth?.data?.role === "user") {
       router.replace("/m-brand")
       return;
     }
   }, [auth, loading])
-  if(loading) return null;
-  if(!auth) return null;
+  if (loading) return null;
+  if (!auth) return null;
   return (
     <>
       {children}

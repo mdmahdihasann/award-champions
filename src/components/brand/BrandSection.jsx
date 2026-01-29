@@ -2,7 +2,7 @@
 import BrandButton from '@/components/brand/BrandButton'
 import { useEffect, useState } from 'react'
 import BrandTable from '@/components/brand/BrandTable'
-import Pagination from '@/components/common/PaginationSection'
+import Pagination from '@/components/ui/Pagination'
 import { Space, Switch } from 'antd';
 import { ContentLoading } from '@/components/Loading'
 import useBrandData from '@/hooks/useBrandData'
@@ -33,6 +33,11 @@ const BrandSection = () => {
         }
     }, [activeBrand]);
 
+    useEffect(()=>{
+        if(isCheck){
+            setPage(1)
+        }
+    },[isCheck])
 
 
     if (loading) return <ContentLoading />
@@ -49,7 +54,7 @@ const BrandSection = () => {
                     <div className='flex items-center justify-between'>
                         <h2 className="text-2xl font-semibold text-gray-800">{activeBrand} <span className='text-sm font-medium text-red-400'>({isCheck ? "Current Month" : "Quarter"})</span></h2>
                         <div>
-                            <Space vertical>
+                            <Space vertical >
                                 <Switch checkedChildren="Month" unCheckedChildren="Quarter" defaultChecked checked={isCheck} onChange={() => setIsCheck(!isCheck)} />
                             </Space>
                         </div>
@@ -57,8 +62,8 @@ const BrandSection = () => {
 
                     <div>
                         <div className="bg-white rounded-xl border overflow-auto mb-3">
-                            <BrandTable brandTableData={brandTableData} page={page} perPage={perPage} loading={loading} error={error} />
-
+                            <BrandTable brandTableData={brandTableData} page={page} perPage={perPage} loading={loading} error={error} selectBrandData={selectBrandData} />
+                            
                         </div>
                         <Pagination
                             current={page}
@@ -66,8 +71,8 @@ const BrandSection = () => {
                             pageSize={perPage}
                             onChange={(p) => setPage(p)}
                         />
-
                     </div>
+
 
                 </div>
             </section>

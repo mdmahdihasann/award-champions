@@ -1,7 +1,7 @@
 "use client";
 import { Pagination } from "antd";
 
-const PaginationSection = ({ current, total, pageSize, onChange }) => {
+const PaginationPage = ({ current, total, pageSize, onChange }) => {
   return (
     <div className="flex justify-between items-center">
       <span className="text-sm text-gray-600">
@@ -10,7 +10,7 @@ const PaginationSection = ({ current, total, pageSize, onChange }) => {
 
       <Pagination
         size="small"
-        current={current || 0}
+        current={current || 1}
         total={total}
         pageSize={pageSize}
         onChange={onChange}
@@ -20,4 +20,4 @@ const PaginationSection = ({ current, total, pageSize, onChange }) => {
   );
 };
 
-export default PaginationSection;
+export default PaginationPage;

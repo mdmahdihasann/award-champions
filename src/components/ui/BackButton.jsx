@@ -1,6 +1,6 @@
 "use client"
 
-import Button from '../common/Button'
+import Button from './Button'
 import { MdArrowBack } from "react-icons/md";
 import { useRouter } from 'next/navigation';
 

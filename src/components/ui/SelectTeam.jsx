@@ -3,8 +3,30 @@
 import { Select, Space } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { championshipData } from "@/database/championsData";
 import { useAuth } from "@/hooks/useAuth";
+
+
+export const TeamDropDown = {
+  teams: [
+    {
+      teamCode: "A",
+      teamName: "Team A",
+    },
+    {
+      teamCode: "B",
+      teamName: "Team B",
+    },
+    {
+      teamCode: "C",
+      teamName: "Team C",
+    },
+    {
+      teamCode: "N",
+      teamName: "Team RNL",
+    },
+  ],
+};
+
 
 const SelectTeam = () => {
   const router = useRouter();
@@ -35,7 +57,7 @@ const SelectTeam = () => {
         placeholder="Select team"
         style={{ width: 120, height: 36 }}
         onChange={handleSelect}
-        options={championshipData.teams.map((team) => ({
+        options={TeamDropDown.teams.map((team) => ({
           value: team.teamCode,
           label: team.teamName,
         }))}

@@ -1,7 +1,7 @@
 "use client"
-import BackButton from '@/components/brand/BackButton'
-import Button from '@/components/common/Button';
-import UserInfo from '@/components/common/UserInfo';
+import BackButton from '@/components/ui/BackButton'
+import Button from '@/components/ui/Button';
+import UserInfo from '@/components/ui/UserInfo';
 import { ContentLoading } from '@/components/Loading';
 import { usePathname, useRouter } from 'next/navigation';
 import { Suspense } from 'react';

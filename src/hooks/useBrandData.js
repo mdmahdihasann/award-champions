@@ -29,7 +29,7 @@ const useBrandData = () => {
                 if (res.status === 200) {
                     setBrandData(res.data)
                 }
-            } catch (err) {
+            } catch (err) {                
                 setError("Failed to load data");
             } finally {
                 setLoading(false)

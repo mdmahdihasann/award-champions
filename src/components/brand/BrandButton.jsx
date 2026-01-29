@@ -1,5 +1,5 @@
 "use client"
-import Button from '../common/Button'
+import Button from '../ui/Button'
 import { useEffect } from 'react'
 
 const BrandButton = ({ setActiveBrand, activeBrand, brandData }) => {

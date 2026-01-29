@@ -6,41 +6,20 @@ import FirstPlace from "../../../public/price/medal.png";
 import Image from "next/image";
 import { ContentLoading } from "../Loading";
 
-const BrandTable = ({ brandTableData, page, perPage, loading, error }) => {
+const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrandData }) => {
     const { auth } = useAuth();
-    const containerRef = useRef(null);
-    const rowRef = useRef(null);
-    const [isSticky, setIsSticky] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!containerRef.current || !rowRef.current) return;
+    // user postion number
+    const userData = selectBrandData?.tableData?.find(data => data.territory === auth?.data?.work_area_t);
+    const userPosition = selectBrandData?.tableData?.findIndex(data => data.territory === auth?.data?.work_area_t) + 1;
 
-            const container = containerRef.current;
-            const row = rowRef.current;
 
-            const containerRect = container.getBoundingClientRect();
-            const rowRect = row.getBoundingClientRect();
+    if (loading) return <ContentLoading />;
+    if (error) return <div className="p-4 text-center text-red-400">Failed to load data</div>;
 
-            if (rowRect.bottom > containerRect.bottom) {
-                setIsSticky(true);
-            } else {
-                setIsSticky(false);
-            }
-        };
-
-        const container = containerRef.current;
-        container?.addEventListener("scroll", handleScroll);
-
-        return () => container?.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    if(loading) return <ContentLoading/>
-    if(error) return <div className="p-4 text-center text-red-400">Failed to load data</div>
     return (
         <div
-            ref={containerRef}
-            className="relative  overflow-y-auto max-h-[400px] border border-gray-300"
+            className="relative overflow-y-auto max-h-[400px] border border-gray-300"
         >
             <table className="min-w-full text-[12px] border-collapse w-full">
                 <thead className="bg-[--primary-color] text-white sticky top-0">
@@ -55,44 +34,41 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error }) => {
 
                 <tbody>
                     {brandTableData?.map((brandData, index) => {
-
-                        // siriyal number
                         const serialNumber = ((page || 1) - 1) * (perPage || 10) + index + 1;
 
-                        // Madel icon
                         const getPosition = () => {
-                            if (brandData?.medal === true) return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
+                            if (brandData?.medal) return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
                             return serialNumber;
                         };
 
-                        // Special row for mio
-                        if (brandData.territory === auth?.data?.work_area_t) {
-                            return (
-                                <tr
-                                    key={index}
-                                    ref={rowRef}
-                                    className={`border text-center bg-green-200 font-bold ${isSticky ? "sticky bottom-0 z-40" : ""
-                                        }`}
-                                >
-                                    <td className="px-3 py-2 border">{getPosition()}</td>
-                                    <td className="px-4 py-2 border">{brandData?.territoryId}</td>
-                                    <td className="px-4 py-2 border">{brandData?.rankAchievement}</td>
-                                    <td className="px-4 py-2 border">{brandData?.rankOverAvgGrowth}</td>
-                                    <td className="px-4 py-2 border">{brandData?.cumulativeRank}</td>
-                                </tr>
-                            );
-                        }
+                        const isUser = brandData?.territory === auth?.data?.work_area_t;
 
                         return (
-                            <tr key={index} className={`border text-center hover:bg-gray-100 transition`}>
+                            <tr
+                                key={index}
+                                className={`text-center border hover:bg-gray-100 transition ${isUser ? 'bg-yellow-100 font-bold' : ''}`}
+                            >
                                 <td className="px-3 py-2 border">{getPosition()}</td>
-                                <td className="px-4 py-2 border">{brandData?.territory}</td>
-                                <td className="px-4 py-2 border">{brandData?.ach_rank}</td>
-                                <td className="px-4 py-2 border">{brandData?.sales_rank}</td>
-                                <td className="px-4 py-2 border">{brandData?.cum_rank}</td>
+                                <td className="px-3 py-2 border">{brandData?.territory}</td>
+                                <td className="px-3 py-2 border">{brandData?.ach_rank}</td>
+                                <td className="px-3 py-2 border">{brandData?.sales_rank}</td>
+                                <td className="px-3 py-2 border">{brandData?.cum_rank}</td>
                             </tr>
                         );
                     })}
+
+                    {/* Logged-in user's position row  */}
+                    {userData && (
+                        <tr className="text-center border bg-yellow-100 font-bold sticky bottom-[-1] z-10">
+                            <td className="px-3 py-2 border">
+                                {userData?.medal ? <Image src={FirstPlace} alt="1st Place" width={20} height={20} /> : userPosition}
+                            </td>
+                            <td className="px-3 py-2 border">{userData?.territory}</td>
+                            <td className="px-3 py-2 border">{userData?.ach_rank}</td>
+                            <td className="px-3 py-2 border">{userData?.sales_rank}</td>
+                            <td className="px-3 py-2 border">{userData?.cum_rank}</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>
