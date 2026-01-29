@@ -154,3 +154,10 @@ select option:first-child {
 .pagination-custom .ant-pagination-item:hover {
   @apply bg-purple-200;
 }
+
+.ant-switch.ant-switch-checked:hover{
+  background-color: var(--primary-color-hover) !important;
+}
+.ant-switch.ant-switch-checked{
+  background-color: var(--primary-color);
+}

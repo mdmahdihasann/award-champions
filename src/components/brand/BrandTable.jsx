@@ -13,6 +13,8 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
     const userData = selectBrandData?.tableData?.find(data => data.territory === auth?.data?.work_area_t);
     const userPosition = selectBrandData?.tableData?.findIndex(data => data.territory === auth?.data?.work_area_t) + 1;
 
+    const userTerritory = auth?.data?.work_area_t;
+    const isUserInCurrentPage = brandTableData.some((data)=> data.territory === userTerritory)
 
     if (loading) return <ContentLoading />;
     if (error) return <div className="p-4 text-center text-red-400">Failed to load data</div>;
@@ -46,7 +48,7 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
                         return (
                             <tr
                                 key={index}
-                                className={`text-center border hover:bg-gray-100 transition ${isUser ? 'bg-yellow-100 font-bold' : ''}`}
+                                className={`text-center border hover:bg-gray-100 transition ${isUser ? 'bg-[#8BA8C4] font-bold' : ''}`}
                             >
                                 <td className="px-3 py-2 border">{getPosition()}</td>
                                 <td className="px-3 py-2 border">{brandData?.territory}</td>
@@ -58,8 +60,8 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
                     })}
 
                     {/* Logged-in user's position row  */}
-                    {userData && (
-                        <tr className="text-center border bg-yellow-100 font-bold sticky bottom-[-1] z-10">
+                    {userData && !isUserInCurrentPage && (
+                        <tr className="text-center border bg-[#8BA8C4] text-white font-bold sticky bottom-[-1] z-10">
                             <td className="px-3 py-2 border">
                                 {userData?.medal ? <Image src={FirstPlace} alt="1st Place" width={20} height={20} /> : userPosition}
                             </td>

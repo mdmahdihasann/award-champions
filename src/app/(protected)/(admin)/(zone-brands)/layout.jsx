@@ -30,7 +30,7 @@ export default function TeamBrandLayout({ children }) {
 
       <section>
         {children}
-      </section>;
+      </section>
     </>
   )
 }

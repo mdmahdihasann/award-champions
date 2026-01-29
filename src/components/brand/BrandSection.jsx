@@ -55,7 +55,7 @@ const BrandSection = () => {
                         <h2 className="text-2xl font-semibold text-gray-800">{activeBrand} <span className='text-sm font-medium text-red-400'>({isCheck ? "Current Month" : "Quarter"})</span></h2>
                         <div>
                             <Space vertical >
-                                <Switch checkedChildren="Month" unCheckedChildren="Quarter" defaultChecked checked={isCheck} onChange={() => setIsCheck(!isCheck)} />
+                                <Switch checkedChildren="Quarter" unCheckedChildren="Month" defaultChecked checked={isCheck} onChange={() => setIsCheck(!isCheck)} />
                             </Space>
                         </div>
                     </div>

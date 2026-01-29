@@ -1,6 +1,4 @@
 import { useAuth } from "@/hooks/useAuth";
-
-
 const UserInfo = () => {
     const { selectedTeam } = useAuth();
 ;    return (
