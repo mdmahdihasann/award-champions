@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import FirstPlace from "../../../public/price/medal.png";
 import Image from "next/image";
