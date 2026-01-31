@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuths";
 import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { Dropdown } from "antd";

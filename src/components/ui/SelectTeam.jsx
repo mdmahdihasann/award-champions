@@ -3,7 +3,7 @@
 import { Select, Space } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuths";
 
 
 export const TeamDropDown = {
