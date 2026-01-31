@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "../../../../../hooks/useAuth";
 import Table from "@/app/(protected)/(admin)/(zone-brands)/zone/Table";
 import Pagination from "@/components/ui/Pagination";
 import { Space, Switch } from 'antd';

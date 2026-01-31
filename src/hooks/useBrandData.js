@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { useAuth } from "./useAuth"
+import { useAuth } from "../hooks/useAuth"
 import axios from "axios";
 
 const useBrandData = () => {
