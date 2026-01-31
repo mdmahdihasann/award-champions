@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import FirstPlace from "../../../public/price/medal.png";
 import Image from "next/image";
 import { ContentLoading } from "../Loading";
