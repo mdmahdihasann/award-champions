@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { useAuth } from "@/hooks/useAuths";
+import { useAuth } from "@/hooks/useAuth";
 import axios from "axios";
 
 
