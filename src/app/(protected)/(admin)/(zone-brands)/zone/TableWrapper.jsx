@@ -30,11 +30,13 @@ const MonthTableWrapper = () => {
   }, [selectedTeam]);
 
   // Reset when month and current changes
-  useEffect(()=>{
-    if(isCheck){
+  useEffect(() => {
+    if (isCheck) {
+      setPage(1)
+    } else {
       setPage(1)
     }
-  },[isCheck])
+  }, [isCheck])
 
   // Fetch data
   useEffect(() => {

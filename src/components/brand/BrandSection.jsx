@@ -36,6 +36,8 @@ const BrandSection = () => {
     useEffect(()=>{
         if(isCheck){
             setPage(1)
+        }else{
+            setPage(1)
         }
     },[isCheck])
 
