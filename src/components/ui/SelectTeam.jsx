@@ -2,8 +2,9 @@
 
 import { Select, Space } from "antd";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from "react";
 
 
 export const TeamDropDown = {
@@ -30,9 +31,12 @@ export const TeamDropDown = {
 
 const SelectTeam = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const { auth, setSelectedTeam } = useAuth();
 
+
   const handleSelect = async (teamCode) => {
+    
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,
@@ -50,7 +54,12 @@ const SelectTeam = () => {
       console.error("Team select failed:", error);
     }
   };
-  
+
+  useEffect(() => {
+    if (pathname === "/") {
+      setSelectedTeam(null)
+    }
+  }, [pathname])
   return (
     <Space wrap>
       <Select

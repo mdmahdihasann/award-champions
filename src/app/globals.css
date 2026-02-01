@@ -142,22 +142,3 @@ select option:first-child {
   }
 }
 
-
-.pagination-custom .ant-pagination-item {
-  @apply bg-white text-gray-800 rounded-md;
-}
-
-.pagination-custom .ant-pagination-item-active {
-  @apply bg-gray-200 text-white rounded-md;
-}
-
-.pagination-custom .ant-pagination-item:hover {
-  @apply bg-purple-200;
-}
-
-.ant-switch.ant-switch-checked:hover{
-  background-color: var(--primary-color-hover) !important;
-}
-.ant-switch.ant-switch-checked{
-  background-color: var(--primary-color);
-}

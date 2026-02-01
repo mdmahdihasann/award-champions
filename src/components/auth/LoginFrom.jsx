@@ -21,7 +21,7 @@ export default function LoginFrom() {
     const [work_area_t, setWork_area_t] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const { setAuth } = useAuth();
+    const { setAuth, auth } = useAuth();
 
 
 
@@ -38,11 +38,20 @@ export default function LoginFrom() {
 
                 if (res.status === 200) {
                     const authData = {
-                        ...res.data 
+                        ...res.data
                     };
                     setAuth(authData);
                     toast.success("Login Successfully");
-                    router.push("/m-brand");
+                    if (
+                        authData?.data?.designation_id === 1 ||
+                        authData?.data?.designation_id === 2
+                    ) {
+                        router.push("/m-brand");
+
+                    } else {
+                        router.push(`/m-zone`);
+                    }
+
                 }
                 return;
             }

@@ -1,13 +1,9 @@
 "use client"
-import { FaArrowTrendUp } from "react-icons/fa6";
-import { FaArrowTrendDown } from "react-icons/fa6";
 
 
 const DashboardStatCard = ({
   title,
   value,
-  change,
-  changeType,
   icon,
   iconColor,
   bgColor,
@@ -26,18 +22,6 @@ const DashboardStatCard = ({
           </h3>
           <p className="text-2xl text-black font-semibold mt-1">{value}</p>
         </div>
-      </div>
-      <div
-        className={` bg-[#e3e6fe] w-full py-1 px-2 rounded mt-2 flex justify-between`}
-      >
-        <span className="text-[10px] text-bold text-black">13k Last Week</span>{" "}
-        <span
-          className={`flex gap-1.5 text-[10px] text-bold items-center ${changeType === "up" ? "text-red-700" : "text-blue-500"
-            }`}
-        >
-          {changeType === "up" ? <FaArrowTrendUp /> : <FaArrowTrendDown />}{" "}
-          {change}
-        </span>
       </div>
     </div>
   );

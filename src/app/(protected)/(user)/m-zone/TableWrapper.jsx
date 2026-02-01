@@ -8,7 +8,7 @@ import Pagination from "@/components/ui/Pagination";
 import { Space, Switch } from 'antd';
 
 const TableWrapper = () => {
-  const { selectedTeam } = useAuth();
+  const { auth } = useAuth();
   const [isCheck, setIsCheck] = useState(false);
 
   const [zoneData, setZoneData] = useState(null);
@@ -19,16 +19,6 @@ const TableWrapper = () => {
   const [perPage, setPerPage] = useState(10);
 
   const tableData = isCheck === true ? zoneData?.quarter : zoneData?.month;
-
-
-  // Reset when team changes
-  useEffect(() => {
-    if (selectedTeam) {
-      setPage(1);
-      setIsCheck(false);
-      setPerPage(10)
-    }
-  }, [selectedTeam]);
 
   // Reset when month and current changes
   useEffect(() => {
@@ -41,9 +31,10 @@ const TableWrapper = () => {
     }
   }, [isCheck])
 
+
   // Fetch data
   useEffect(() => {
-    if (!selectedTeam) return;
+    if (!auth) return null;
 
     const fetchPerformanceData = async () => {
       setLoading(true);
@@ -52,9 +43,9 @@ const TableWrapper = () => {
           `${process.env.NEXT_PUBLIC_BASE_URL}/reports/performance`,
           {
             params: {
-              work_area_t: selectedTeam?.data?.work_area_t,
-              designation_id: selectedTeam?.data?.designation_id,
-              gm_code: selectedTeam?.data?.gm_code,
+              work_area_t: auth?.data?.work_area_t,
+              designation_id: auth?.data?.designation_id,
+              gm_code: auth?.data?.gm_code,
 
               page: Page,
               per_page: perPage,
@@ -64,7 +55,6 @@ const TableWrapper = () => {
             },
           }
         );
-
         setZoneData(data);
       } catch (err) {
         console.error(err);
@@ -74,7 +64,7 @@ const TableWrapper = () => {
     };
 
     fetchPerformanceData();
-  }, [selectedTeam, Page, perPage]);
+  }, [Page, perPage]);
 
 
 

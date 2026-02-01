@@ -3,10 +3,10 @@
 import BrandSection from '@/components/brand/BrandSection'
 
 const MioBrandPage = () => {
-  
+
     return (
-       
-        <BrandSection/>
+
+        <BrandSection />
     )
 }
 

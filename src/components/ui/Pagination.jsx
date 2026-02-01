@@ -20,9 +20,7 @@ const PaginationPage = ({
         pageSize={pageSize}
         onChange={onChange}
         onShowSizeChange={(_, size) => onPageSizeChange(size)}
-        showSizeChanger
         pageSizeOptions={["10", "20", "50", "100"]}
-        responsive={false}
       />
     </div>
   );
