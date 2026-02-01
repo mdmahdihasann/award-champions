@@ -7,7 +7,7 @@ import Table from "@/app/(protected)/(admin)/(zone-brands)/zone/Table";
 import Pagination from "@/components/ui/Pagination";
 import { Space, Switch } from 'antd';
 
-const MonthTableWrapper = () => {
+const TableWrapper = () => {
   const { selectedTeam } = useAuth();
   const [isCheck, setIsCheck] = useState(false);
 
@@ -16,7 +16,7 @@ const MonthTableWrapper = () => {
 
   // Quarter pagination
   const [Page, setPage] = useState(1);
-  const quarterPerPage = isCheck === true ? zoneData?.per_page : zoneData?.per_page_m || 10;
+  const [perPage, setPerPage] = useState(10);
 
   const tableData = isCheck === true ? zoneData?.quarter : zoneData?.month;
 
@@ -25,7 +25,8 @@ const MonthTableWrapper = () => {
   useEffect(() => {
     if (selectedTeam) {
       setPage(1);
-      setIsCheck(false)
+      setIsCheck(false);
+      setPerPage(10)
     }
   }, [selectedTeam]);
 
@@ -33,8 +34,10 @@ const MonthTableWrapper = () => {
   useEffect(() => {
     if (isCheck) {
       setPage(1)
+      setPerPage(10)
     } else {
       setPage(1)
+      setPerPage(10)
     }
   }, [isCheck])
 
@@ -54,10 +57,10 @@ const MonthTableWrapper = () => {
               gm_code: selectedTeam?.data?.gm_code,
 
               page: Page,
-              per_page: quarterPerPage,
+              per_page: perPage,
 
               page_m: Page,
-              per_page_m: quarterPerPage,
+              per_page_m: perPage,
             },
           }
         );
@@ -71,7 +74,7 @@ const MonthTableWrapper = () => {
     };
 
     fetchPerformanceData();
-  }, [selectedTeam, Page, quarterPerPage]);
+  }, [selectedTeam, Page, perPage]);
 
 
 
@@ -92,7 +95,7 @@ const MonthTableWrapper = () => {
           <Table
             zoneData={tableData}
             page={Page}
-            perPage={quarterPerPage}
+            perPage={perPage}
             loading={loading}
           />
         </div>
@@ -100,12 +103,13 @@ const MonthTableWrapper = () => {
         <Pagination
           current={Page || 0}
           total={zoneData?.total_items || 0}
-          pageSize={quarterPerPage}
+          pageSize={perPage}
           onChange={setPage}
+          onPageSizeChange={setPerPage}
         />
       </div>
     </>
   );
 };
 
-export default MonthTableWrapper;
+export default TableWrapper;

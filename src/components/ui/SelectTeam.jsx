@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 
 export const TeamDropDown = {
-  teams: [
+  team: [
     {
       teamCode: "A",
       teamName: "Team A",
@@ -50,14 +50,14 @@ const SelectTeam = () => {
       console.error("Team select failed:", error);
     }
   };
-
+  
   return (
     <Space wrap>
       <Select
         placeholder="Select team"
         style={{ width: 120, height: 36 }}
         onChange={handleSelect}
-        options={TeamDropDown.teams.map((team) => ({
+        options={TeamDropDown.team.map((team) => ({
           value: team.teamCode,
           label: team.teamName,
         }))}

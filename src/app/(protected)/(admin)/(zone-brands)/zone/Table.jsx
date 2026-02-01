@@ -13,13 +13,13 @@ const Table = ({ zoneData, page, perPage, loading }) => {
     return (
         <div
 
-            className="relative overflow-y-auto max-h-[456px] border border-gray-300"
+            className="relative overflow-y-auto border border-gray-300"
         >
-            <table className="min-w-full text-[12px] border-collapse w-full">
+            <table className="min-w-full text-[12px] w-full">
                 <thead className="bg-[--primary-color] text-white sticky top-0">
                     <tr className="text-center">
                         <th className="px-1.5 py-2 font-semibold w-12">No.</th>
-                        <th className="px-1.5 py-2 font-semibold w-16">Zone</th>
+                        <th className="px-1.5 py-2 font-semibold w-26">Zone</th>
                         <th className="px-1.5 py-2 font-semibold">Rank Ach%</th>
                         <th className="px-1.5 py-2 font-semibold">Rank Over Avg Gr.%</th>
                         <th className="px-1.5 py-2 font-semibold">Cumulative Rank</th>

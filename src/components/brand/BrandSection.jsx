@@ -14,7 +14,7 @@ const BrandSection = () => {
     const [isCheck, setIsCheck] = useState(false);
 
     const [page, setPage] = useState(1);
-    const perPage = 10;
+    const [perPage, setPerPage] = useState(10)
 
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
@@ -30,14 +30,17 @@ const BrandSection = () => {
         if (activeBrand) {
             setPage(1);
             setIsCheck(false)
+            setPerPage(10)
         }
     }, [activeBrand]);
 
     useEffect(()=>{
         if(isCheck){
             setPage(1)
+            setPerPage(10)
         }else{
             setPage(1)
+            setPerPage(10)
         }
     },[isCheck])
 
@@ -72,6 +75,7 @@ const BrandSection = () => {
                             total={selectBrandData?.tableData?.length || 0}
                             pageSize={perPage}
                             onChange={(p) => setPage(p)}
+                            onPageSizeChange={setPerPage}
                         />
                     </div>
 
