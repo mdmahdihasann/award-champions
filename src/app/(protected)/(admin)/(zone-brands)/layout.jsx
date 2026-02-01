@@ -14,7 +14,7 @@ export default function TeamBrandLayout({ children }) {
   return (
     <>
       <section className="wrapper max-w-screen-sm mx-auto px-4 py-2 mt-2">
-        <div className='flex justify-between'>
+        <div className='flex justify-between pb-6'>
           <div><BackButton /></div>
           {
             paramsBrand !== '/brand' ? <div><Button onClick={() => router.push('/brand')} className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition">
@@ -28,9 +28,9 @@ export default function TeamBrandLayout({ children }) {
         </Suspense>
       </section>
 
-      <section>
+      <>
         {children}
-      </section>
+      </>
     </>
   )
 }

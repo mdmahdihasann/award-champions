@@ -7,7 +7,7 @@ export const metadata = {
 
 const page = () => {
     return (
-        <section className='wrapper max-w-screen-sm mx-auto px-4 py-2 mt-2'>
+        <section className='wrapper max-w-screen-sm mx-auto px-4 py-2'>
             <TableWrapper />
         </section>
     )

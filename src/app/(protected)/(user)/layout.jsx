@@ -40,7 +40,7 @@ export default function UserLayout({ children }) {
         !isAllowed && (
           <section className="wrapper max-w-screen-sm mx-auto px-4 mt-2">
             <div className="flex justify-between">
-              <BackButton className="mb-[0px]" />
+              <BackButton/>
 
               {pathname !== "/m-brand" && (
                 <Button
