@@ -104,7 +104,7 @@ const TableWrapper = () => {
           current={Page || 0}
           total={zoneData?.total_items || 0}
           pageSize={perPage}
-          onChange={setPage}
+          onChange={(p) => setPage(p)}
           onPageSizeChange={setPerPage}
         />
       </div>

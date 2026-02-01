@@ -1,9 +1,6 @@
 import TableWrapper from "./TableWrapper";
-
-
-
 export const metadata = {
-  title: "Team - Award ChampoinShip",
+  title: "Zone - Award ChampoinShip",
 };
 const TeamPage = () => {
   return (

@@ -4,41 +4,24 @@ import { Select, Space } from "antd";
 import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-
-export const TeamDropDown = {
-  team: [
-    {
-      teamCode: "A",
-      teamName: "Team A",
-    },
-    {
-      teamCode: "B",
-      teamName: "Team B",
-    },
-    {
-      teamCode: "C",
-      teamName: "Team C",
-    },
-    {
-      teamCode: "N",
-      teamName: "Team RNL",
-    },
-  ],
-};
-
+export const TeamDropDown = [
+  { value: "A", label: "Team A" },
+  { value: "B", label: "Team B" },
+  { value: "C", label: "Team C" },
+  { value: "N", label: "Team RNL" },
+];
 
 const SelectTeam = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { auth, setSelectedTeam } = useAuth();
-
+  const [selectedValue, setSelectedValue] = useState(undefined);
 
   const handleSelect = async (teamCode) => {
-    
     try {
-      const res = await axios.post(
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,
         {
           ...auth,
@@ -46,8 +29,9 @@ const SelectTeam = () => {
         }
       );
 
-      if (res.status === 200) {
-        setSelectedTeam(res.data);
+      if (response.status === 200) {
+        setSelectedValue(teamCode);
+        setSelectedTeam(response.data);
         router.push(`/zone?team=${teamCode}`);
       }
     } catch (error) {
@@ -57,19 +41,18 @@ const SelectTeam = () => {
 
   useEffect(() => {
     if (pathname === "/") {
-      setSelectedTeam(null)
+      setSelectedValue(undefined);
     }
-  }, [pathname])
+  }, [pathname]);
+
   return (
     <Space wrap>
       <Select
         placeholder="Select team"
-        style={{ width: 120, height: 36 }}
+        style={{ width: 140, height: 36 }}
+        value={selectedValue}
         onChange={handleSelect}
-        options={TeamDropDown.team.map((team) => ({
-          value: team.teamCode,
-          label: team.teamName,
-        }))}
+        options={TeamDropDown}
       />
     </Space>
   );

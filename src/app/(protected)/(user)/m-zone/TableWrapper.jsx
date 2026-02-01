@@ -91,10 +91,10 @@ const TableWrapper = () => {
         </div>
 
         <Pagination
-          current={Page || 0}
+          current={Page}
           total={zoneData?.total_items || 0}
           pageSize={perPage}
-          onChange={setPage}
+          onChange={(p) => setPage(p)}
           onPageSizeChange={setPerPage}
         />
       </div>

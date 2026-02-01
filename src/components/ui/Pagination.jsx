@@ -19,8 +19,11 @@ const PaginationPage = ({
         total={total}
         pageSize={pageSize}
         onChange={onChange}
+        showLessItems
+        showSizeChanger
         onShowSizeChange={(_, size) => onPageSizeChange(size)}
         pageSizeOptions={["10", "20", "50", "100"]}
+        simple 
       />
     </div>
   );

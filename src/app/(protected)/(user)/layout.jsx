@@ -36,21 +36,23 @@ export default function UserLayout({ children }) {
 
   return (
     <>
-      <section className="wrapper max-w-screen-sm mx-auto px-4 mt-2">
-        <div className="flex justify-between">
-          <BackButton className="mb-0" />
+      {
+        !isAllowed && (
+          <section className="wrapper max-w-screen-sm mx-auto px-4 mt-2">
+            <div className="flex justify-between">
+              <BackButton className="mb-[0px]" />
 
-          {pathname !== "/m-brand" && (
-            <Button
-              onClick={() => router.push("/m-brand")}
-              className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition"
-            >
-              <RiBuildingLine size={16} />
-              Brand
-            </Button>
-          )}
-        </div>
-      </section>
+              {pathname !== "/m-brand" && (
+                <Button
+                  onClick={() => router.push("/m-brand")}
+                  className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition"
+                ><RiBuildingLine size={16} />Brand</Button>
+              )}
+            </div>
+          </section>
+        )
+      }
+
 
       {children}
     </>
