@@ -1,6 +1,3 @@
-"use client"
-
-
 const DashboardStatCard = ({
   title,
   value,

@@ -30,13 +30,12 @@ export default function Intro() {
                 setLoading(false);
             }
         };
-
         fetchDashData();
     }, []);
 
 
     if (loading) return <ContentLoading />
-    if (error) return <div>Data not found</div>
+    if (error) return <div className="p-4 text-center text-red-400">Failed to load data</div>;
     return (
         <div className="p-4 bg-gray-100 border border-[--border-color] rounded-2xl">
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4">

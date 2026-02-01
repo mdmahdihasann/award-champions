@@ -13,6 +13,7 @@ const TableWrapper = () => {
 
   const [zoneData, setZoneData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null)
 
   // Quarter pagination
   const [Page, setPage] = useState(1);
@@ -57,6 +58,7 @@ const TableWrapper = () => {
         );
         setZoneData(data);
       } catch (err) {
+        setError("Data Not Found")
         console.error(err);
       } finally {
         setLoading(false);
@@ -67,7 +69,7 @@ const TableWrapper = () => {
   }, [Page, perPage]);
 
 
-
+  if (error) return <div className="p-4 text-center text-red-400">Failed to load data</div>;
   return (
     <>
       <div className="border rounded-xl p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">

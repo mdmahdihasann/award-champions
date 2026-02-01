@@ -45,7 +45,6 @@ const BrandSection = () => {
     },[isCheck])
 
 
-    if (loading) return <ContentLoading />
     return (
         <>
             <section className='wrapper max-w-screen-sm mx-auto p-4'>
