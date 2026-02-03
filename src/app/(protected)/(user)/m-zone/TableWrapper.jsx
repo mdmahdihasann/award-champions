@@ -16,10 +16,14 @@ const TableWrapper = () => {
   const [error, setError] = useState(null)
 
   // Quarter pagination
-  const [Page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
 
-  const tableData = isCheck === true ? zoneData?.quarter : zoneData?.month;
+  const startIndex = (page - 1) * perPage;
+  const endIndex = startIndex + perPage;
+
+  const zoneTableData = isCheck === true ? zoneData?.month : zoneData?.quarter;
+  const selectedZoneData = zoneTableData?.slice(startIndex, endIndex) || [];
 
   // Reset when month and current changes
   useEffect(() => {
@@ -47,12 +51,7 @@ const TableWrapper = () => {
               work_area_t: auth?.data?.work_area_t,
               designation_id: auth?.data?.designation_id,
               gm_code: auth?.data?.gm_code,
-
-              page: Page,
-              per_page: perPage,
-
-              page_m: Page,
-              per_page_m: perPage,
+              team: auth?.data?.group_name
             },
           }
         );
@@ -66,7 +65,7 @@ const TableWrapper = () => {
     };
 
     fetchPerformanceData();
-  }, [Page, perPage]);
+  }, [page, perPage]);
 
 
   if (error) return <div className="p-4 text-center text-red-400">Failed to load data</div>;
@@ -85,16 +84,16 @@ const TableWrapper = () => {
 
         <div className="bg-white rounded-xl border overflow-auto">
           <Table
-            zoneData={tableData}
-            page={Page}
+            zoneData={selectedZoneData}
+            page={page}
             perPage={perPage}
             loading={loading}
           />
         </div>
 
         <Pagination
-          current={Page}
-          total={zoneData?.total_items || 0}
+          current={page}
+          total={zoneTableData?.length || 0}
           pageSize={perPage}
           onChange={(p) => setPage(p)}
           onPageSizeChange={setPerPage}

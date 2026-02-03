@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
-import FirstPlace from "../../../public/price/medal.png";
+import Medal from "../../../public/price/medal.png";
 import Image from "next/image";
 import { ContentLoading } from "../Loading";
 
@@ -11,6 +11,9 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
     // user postion number
     const userData = selectBrandData?.tableData?.find(data => data.territory === auth?.data?.work_area_t);
     const userPosition = selectBrandData?.tableData?.findIndex(data => data.territory === auth?.data?.work_area_t) + 1;
+
+    console.log(userData);
+    
 
     const userTerritory = auth?.data?.work_area_t;
     const isUserInCurrentPage = brandTableData.some((data)=> data.territory === userTerritory)
@@ -38,7 +41,7 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
                         const serialNumber = ((page || 1) - 1) * (perPage || 10) + index + 1;
 
                         const getPosition = () => {
-                            if (brandData?.medal) return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
+                            if (brandData?.medal) return <Image src={Medal} alt="1st Place" width={20} height={20} />;
                             return serialNumber;
                         };
 

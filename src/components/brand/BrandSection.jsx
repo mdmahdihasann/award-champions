@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import BrandTable from '@/components/brand/BrandTable'
 import Pagination from '@/components/ui/Pagination'
 import { Space, Switch } from 'antd';
-import { ContentLoading } from '@/components/Loading'
 import useBrandData from '@/hooks/useBrandData'
 
 const BrandSection = () => {

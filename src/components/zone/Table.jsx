@@ -1,8 +1,6 @@
 "use client";
 
-import FirstPlace from "../../../public/price/1st-place.png"
-import SecondPlace from "../../../public/price/2nd-place.png"
-import ThirdPlace from "../../../public/price/3rd-place.png"
+import FirstPlace from "../../../public/price/winner-trophy.png"
 import Image from "next/image";
 import { ContentLoading } from "@/components/Loading";
 
@@ -34,9 +32,7 @@ const Table = ({ zoneData, page, perPage, loading }) => {
 
                             // Top 3 images
                             const getPosition = () => {
-                                if (serialNumber === 1) return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
-                                if (serialNumber === 2) return <Image src={SecondPlace} alt="2nd Place" width={20} height={20} />;
-                                if (serialNumber === 3) return <Image src={ThirdPlace} alt="3rd Place" width={20} height={20} />;
+                                if (champion?.cup) return <Image src={FirstPlace} alt="1st Place" width={20} height={20} />;
                                 return serialNumber;
                             };
 

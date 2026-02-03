@@ -15,10 +15,14 @@ const TableWrapper = () => {
   const [loading, setLoading] = useState(false);
 
   // Quarter pagination
-  const [Page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
 
-  const tableData = isCheck === true ? zoneData?.quarter : zoneData?.month;
+  const startIndex = (page - 1) * perPage;
+  const endIndex  = startIndex + perPage;
+
+  const zoneTableData = isCheck === true ? zoneData?.month : zoneData?.quarter ;
+  const selectedZoneData = zoneTableData?.slice(startIndex, endIndex) || [];
 
 
   // Reset when team changes
@@ -55,16 +59,10 @@ const TableWrapper = () => {
               work_area_t: selectedTeam?.data?.work_area_t,
               designation_id: selectedTeam?.data?.designation_id,
               gm_code: selectedTeam?.data?.gm_code,
-
-              page: Page,
-              per_page: perPage,
-
-              page_m: Page,
-              per_page_m: perPage,
+              team: selectedTeam?.data?.group_name
             },
           }
         );
-
         setZoneData(data);
       } catch (err) {
         console.error(err);
@@ -74,7 +72,7 @@ const TableWrapper = () => {
     };
 
     fetchPerformanceData();
-  }, [selectedTeam, Page, perPage]);
+  }, [selectedTeam, page, perPage]);
 
 
 
@@ -93,16 +91,16 @@ const TableWrapper = () => {
 
         <div className="bg-white rounded-xl border overflow-auto">
           <Table
-            zoneData={tableData}
-            page={Page}
+            zoneData={selectedZoneData}
+            page={page}
             perPage={perPage}
             loading={loading}
           />
         </div>
 
         <Pagination
-          current={Page || 0}
-          total={zoneData?.total_items || 0}
+          current={page || 0}
+          total={zoneTableData?.length || 0}
           pageSize={perPage}
           onChange={(p) => setPage(p)}
           onPageSizeChange={setPerPage}
