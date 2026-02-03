@@ -48,7 +48,7 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
                         return (
                             <tr
                                 key={index}
-                                className={`text-center border hover:bg-gray-100 transition ${isUser ? 'bg-[#8BA8C4] font-bold' : ''}`}
+                                className={`text-center border hover:bg-gray-100 transition ${isUser ? 'bg-[#8BA8C4] text-white font-bold' : ''}`}
                             >
                                 <td className="px-3 py-2 border">{getPosition()}</td>
                                 <td className="px-3 py-2 border">{brandData?.territory}</td>
@@ -61,7 +61,7 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
 
                     {/* Logged-in user's position row  */}
                     {userData && !isUserInCurrentPage && (
-                        <tr className="text-center border bg-[#8BA8C4] text-black font-bold sticky bottom-[-1] z-10">
+                        <tr className="text-center border bg-[#8BA8C4] text-white font-bold sticky bottom-[-1] z-10">
                             <td className="px-3 py-2 border">
                                 {userData?.medal ? <Image src={Medal} alt="1st Place" width={20} height={20} /> : userPosition}
                             </td>
