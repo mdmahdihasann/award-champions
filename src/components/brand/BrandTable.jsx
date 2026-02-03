@@ -11,8 +11,6 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
     // user postion number
     const userData = selectBrandData?.tableData?.find(data => data.territory === auth?.data?.work_area_t);
     const userPosition = selectBrandData?.tableData?.findIndex(data => data.territory === auth?.data?.work_area_t) + 1;
-
-    console.log(userData);
     
 
     const userTerritory = auth?.data?.work_area_t;
@@ -65,7 +63,7 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
                     {userData && !isUserInCurrentPage && (
                         <tr className="text-center border bg-[#8BA8C4] text-black font-bold sticky bottom-[-1] z-10">
                             <td className="px-3 py-2 border">
-                                {userData?.medal ? <Image src={FirstPlace} alt="1st Place" width={20} height={20} /> : userPosition}
+                                {userData?.medal ? <Image src={Medal} alt="1st Place" width={20} height={20} /> : userPosition}
                             </td>
                             <td className="px-3 py-2 border">{userData?.territory}</td>
                             <td className="px-3 py-2 border">{userData?.ach_rank}</td>
