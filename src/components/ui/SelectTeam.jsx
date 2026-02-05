@@ -2,7 +2,7 @@
 
 import { Select, Space } from "antd";
 import axios from "axios";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 
@@ -16,6 +16,7 @@ export const TeamDropDown = [
 const SelectTeam = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { auth, setSelectedTeam } = useAuth();
   const [selectedValue, setSelectedValue] = useState(undefined);
 
@@ -38,6 +39,13 @@ const SelectTeam = () => {
       console.error("Team select failed:", error);
     }
   };
+
+  useEffect(()=>{
+    const teamFromUrl = searchParams.get("team");
+    if(teamFromUrl){
+      setSelectedValue(teamFromUrl)
+    }
+  },[searchParams])
 
   useEffect(() => {
     if (pathname === "/") {

@@ -48,7 +48,7 @@ const BrandTable = ({ brandTableData, page, perPage, loading, error, selectBrand
                         return (
                             <tr
                                 key={index}
-                                className={`text-center border hover:bg-gray-100 transition ${isUser ? 'bg-[#8BA8C4] text-white hover:text-black font-bold' : ''}`}
+                                className={`text-center border hover:bg-gray-100 transition ${isUser ? 'bg-[#8BA8C4] text-black hover:text-black font-bold' : ''}`}
                             >
                                 <td className="px-3 py-2 border">{getPosition()}</td>
                                 <td className="px-3 py-2 border">{brandData?.territory}</td>
