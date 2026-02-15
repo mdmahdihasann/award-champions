@@ -20,7 +20,7 @@ const HistorySection = () => {
     const endIndex = startIndex + perPage;
 
     const history = historyData?.data?.zone_perfomance?.slice(startIndex, endIndex);
-    
+
 
     const handleChange = value => {
         console.log(`selected ${value}`);
@@ -63,30 +63,29 @@ const HistorySection = () => {
                 <Select
                     mode="multiple"
                     maxCount={MAX_COUNT}
-                    style={{ width: 130 }}
+                    style={{ width:130 }}
                     placeholder="Please select"
                     onChange={handleChange}
                     options={[
                         {
-                            label: <span>Year</span>,
-                            title: 'year',
-                            options: [
-                                { label: <span>2025</span>, value: '2025' },
-                                { label: <span>2026</span>, value: '2026' },
-                            ],
+                            label: "Year",
+                            options:
+                                historyData?.data?.available_years?.map((y) => ({
+                                    label: y,
+                                    value: y,
+                                })) || [],
                         },
                         {
-                            label: <span>Quater</span>,
-                            title: 'quater',
-                            options: [
-                                { label: <span>Q1</span>, value: 'q1' },
-                                { label: <span>Q2</span>, value: 'q2' },
-                                { label: <span>Q3</span>, value: 'q3' },
-                                { label: <span>Q4</span>, value: 'q4' },
-                            ],
+                            label: "Quarter",
+                            options:
+                                historyData?.data?.available_quarter?.map((q) => ({
+                                    label: q,
+                                    value: q,
+                                })) || [],
                         },
                     ]}
                 />
+
             </div>
 
             <div className="bg-white rounded-xl border overflow-auto">
