@@ -1,30 +1,34 @@
 "use client"
 
+import Button from "@/components/ui/Button";
+import HistoryModal from "@/components/ui/HistoryModal";
 import Pagination from "@/components/ui/Pagination";
 import Table from '@/components/zone/Table';
 import { useAuth } from "@/hooks/useAuth";
-import { Select } from 'antd';
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { LuSlidersHorizontal } from "react-icons/lu";
 
-const MAX_COUNT = 2;
-const HistorySection = () => {
+const ZoneHistorySection = () => {
     const { selectedTeam } = useAuth();
     const [loading, setLoading] = useState(false);
     const [historyData, setHistoryData] = useState();
 
+    const [isOpen, setIsOpen] = useState(false);
+
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
+
+    const [filters, setFilters] = useState({
+        year: null,
+        quarter: null,
+    });
+
 
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
 
     const history = historyData?.data?.zone_perfomance?.slice(startIndex, endIndex);
-
-
-    const handleChange = value => {
-        console.log(`selected ${value}`);
-    };
 
 
     useEffect(() => {
@@ -37,8 +41,8 @@ const HistorySection = () => {
                         params: {
                             gm_code: selectedTeam?.data?.gm_code,
                             team: selectedTeam?.data?.group_name,
-                            year: null,
-                            quarter: null,
+                            year: filters.year,
+                            quarter: filters.quarter,
                         }
                     }
                 )
@@ -54,36 +58,26 @@ const HistorySection = () => {
             }
         }
         fetchHistoryData()
-    }, [selectedTeam, page, perPage])
+    }, [selectedTeam, page, perPage, filters])
 
     return (
         <div className="border rounded-xl p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
             <div className="flex justify-between">
                 <h2 className="text-xl font-semibold text-gray-800">{historyData?.data?.selected_year} <span className='text-sm font-medium text-red-400'>({historyData?.data?.selected_quarter})</span></h2>
-                <Select
-                    mode="multiple"
-                    maxCount={MAX_COUNT}
-                    style={{ width:130 }}
-                    placeholder="Please select"
-                    onChange={handleChange}
-                    options={[
-                        {
-                            label: "Year",
-                            options:
-                                historyData?.data?.available_years?.map((y) => ({
-                                    label: y,
-                                    value: y,
-                                })) || [],
-                        },
-                        {
-                            label: "Quarter",
-                            options:
-                                historyData?.data?.available_quarter?.map((q) => ({
-                                    label: q,
-                                    value: q,
-                                })) || [],
-                        },
-                    ]}
+
+                <Button onClick={() => setIsOpen(true)} className={`flex gap-2 justify-center px-2 bg-[--primary-color] hover:bg-gray-700 w-10 border items-center transition text-white `}><LuSlidersHorizontal className="text-lg" />
+                </Button>
+
+                {/* history Modal */}
+                <HistoryModal
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    historyData={historyData?.data}
+                    selectedYear={filters.year}
+                    selectedQuarter={filters.quarter}
+                    onApply={(values)=>{
+                        setFilters(values)
+                    }}
                 />
 
             </div>
@@ -109,4 +103,4 @@ const HistorySection = () => {
     )
 }
 
-export default HistorySection
+export default ZoneHistorySection

@@ -9,7 +9,7 @@ const TeamPage = () => {
   return (
     <>
       <section className="wrapper max-w-screen-sm mx-auto flex flex-col gap-6">
-        <HistoryButton/>
+        <HistoryButton url={'zone-history'}/>
         <TableWrapper />
       </section>
     </>
