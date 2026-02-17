@@ -1,5 +1,5 @@
+import BrandHistorySection from '@/components/brand/BrandHistorySection';
 import React from 'react'
-import BrandHistorySection from '../../../../../components/brand/BrandHistorySection'
 
 export const metadata = {
     title: "Brand History - Award ChampoinShip",

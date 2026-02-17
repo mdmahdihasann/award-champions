@@ -5,10 +5,13 @@ import BrandTable from '@/components/brand/BrandTable'
 import Pagination from '@/components/ui/Pagination'
 import { Space, Switch } from 'antd';
 import useBrandData from '@/hooks/useBrandData'
+import HistoryButton from '../ui/HistoryButton'
+import { useAuth } from '@/hooks/useAuth'
 
 const BrandSection = () => {
     const { brandData, loading, error } = useBrandData();
     const [activeBrand, setActiveBrand] = useState(null);
+    const { auth } = useAuth();
 
     const [isCheck, setIsCheck] = useState(false);
 
@@ -33,21 +36,22 @@ const BrandSection = () => {
         }
     }, [activeBrand]);
 
-    useEffect(()=>{
-        if(isCheck){
+    useEffect(() => {
+        if (isCheck) {
             setPage(1)
             setPerPage(10)
-        }else{
+        } else {
             setPage(1)
             setPerPage(10)
         }
-    },[isCheck])
+    }, [isCheck])
 
 
     return (
         <>
             <section className='wrapper max-w-screen-sm mx-auto p-4'>
-                <div className='grid grid-cols-4 gap-2'>
+                <HistoryButton url={`${auth?.work_area_t === "admin" ? "brand-history" : "m-brand-history"}`} />
+                <div className='grid grid-cols-4 gap-2 mt-5'>
                     <BrandButton setActiveBrand={setActiveBrand} activeBrand={activeBrand} brandData={brandData} />
                 </div>
             </section>
@@ -66,7 +70,7 @@ const BrandSection = () => {
                     <div>
                         <div className="bg-white rounded-xl border overflow-auto mb-3">
                             <BrandTable brandTableData={brandTableData} page={page} perPage={perPage} loading={loading} error={error} selectBrandData={selectBrandData} />
-                            
+
                         </div>
                         <Pagination
                             current={page}
