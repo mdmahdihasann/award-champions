@@ -62,6 +62,10 @@ select option:first-child {
   display: none;
 }
 
+.ant-switch-checked {
+	background: var(--primary-color) !important;
+}
+
 
 /* Page Loader Css */
 .pageloader {
