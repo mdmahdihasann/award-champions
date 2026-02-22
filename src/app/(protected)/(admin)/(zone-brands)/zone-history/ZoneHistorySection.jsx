@@ -23,12 +23,13 @@ const ZoneHistorySection = () => {
         year: null,
         quarter: null,
     });
-
+    
 
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
 
-    const history = historyData?.data?.zone_perfomance?.slice(startIndex, endIndex);
+    const history = historyData?.data?.zone_performance?.slice(startIndex, endIndex);
+    
 
 
     useEffect(() => {
@@ -46,7 +47,9 @@ const ZoneHistorySection = () => {
                         }
                     }
                 )
-                if (status === 200) {
+                if (status === 200 && data?.data?.zone_performance?.length > 0) {
+                    setHistoryData(data)
+                }else if(status === 204){
                     setHistoryData(data)
                 }
 
@@ -93,7 +96,7 @@ const ZoneHistorySection = () => {
 
             <Pagination
                 current={page || 0}
-                total={historyData?.data?.zone_perfomance?.length || 0}
+                total={historyData?.data?.zone_performance?.length || 0}
                 pageSize={perPage}
                 onChange={(p) => setPage(p)}
                 onPageSizeChange={setPerPage}

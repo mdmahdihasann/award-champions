@@ -64,7 +64,7 @@ const HistoryModal = ({ isOpen, onClose, historyData, selectedYear, selectedQuar
                             allowClear
                             onChange={(value) => setQuarter(value)}
                             value={quarter === null ? historyData?.selected_quarter : quarter}
-                            options={historyData?.available_quarter?.map((q) => ({
+                            options={historyData?.available_quarters?.map((q) => ({
                                 value: q,
                                 label: q,
                             }))}
