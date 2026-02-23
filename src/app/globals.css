@@ -149,3 +149,6 @@ select option:first-child {
 .ant-drawer-header-title {
 	flex-direction: row-reverse;
 }
+.ant-btn:hover{
+  background-color: var(--primary-color-hover) !important;
+}

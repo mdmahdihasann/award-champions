@@ -4,8 +4,10 @@ import { Button, Drawer, Select } from 'antd';
 import { useEffect, useState } from 'react';
 import { LuSlidersHorizontal } from 'react-icons/lu';
 const HistoryModal = ({ isOpen, onClose, historyData, selectedYear, selectedQuarter, onApply }) => {
+    
     const [year, setYear] = useState(null);
     const [quarter, setQuarter] = useState(null);
+    
 
     useEffect(() => {
         if (isOpen) {

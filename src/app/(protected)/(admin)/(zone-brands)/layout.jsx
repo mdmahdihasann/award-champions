@@ -19,7 +19,7 @@ export default function TeamBrandLayout({ children }) {
             <BackButton />
           </div>
           {
-            paramsBrand !== '/brand' ? <div><Button onClick={() => router.push('/brand')} className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition">
+            paramsBrand === '/zone' ? <div><Button onClick={() => router.push('/brand')} className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition">
               <RiBuildingLine size={16} />
               Brand
             </Button></div> : ""

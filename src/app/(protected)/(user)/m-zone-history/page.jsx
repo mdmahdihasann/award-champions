@@ -1,5 +1,6 @@
+
+import ZoneHistorySection from '@/components/zone/ZoneHistorySection';
 import React from 'react'
-import ZoneHistorySection from '@/components/zone/ZoneHistorySection'
 
 export const metadata = {
     title: "Zone History - Award ChampoinShip",

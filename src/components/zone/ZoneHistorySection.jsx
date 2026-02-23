@@ -10,9 +10,11 @@ import { useEffect, useState } from "react";
 import { LuSlidersHorizontal } from "react-icons/lu";
 
 const ZoneHistorySection = () => {
-    const { selectedTeam } = useAuth();
+    const { selectedTeam, auth } = useAuth();
     const [loading, setLoading] = useState(false);
-    const [historyData, setHistoryData] = useState();
+    const [historyData, setHistoryData] = useState(null);
+
+    const sourceData = selectedTeam ? selectedTeam : auth;
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -23,45 +25,59 @@ const ZoneHistorySection = () => {
         year: null,
         quarter: null,
     });
-    
+    // console.log("filters", filters);
+
 
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
 
-    const history = historyData?.data?.zone_performance?.slice(startIndex, endIndex);
-    
+    const history = historyData?.data?.zone_performance?.slice(startIndex, endIndex) || [];
 
 
     useEffect(() => {
         const fetchHistoryData = async () => {
-            setLoading(true)
+            setLoading(true);
+
             try {
-                const { data, status } = await axios.get(
+                const response = await axios.get(
                     `${process.env.NEXT_PUBLIC_BASE_URL}/reports/zone-history`,
                     {
                         params: {
-                            gm_code: selectedTeam?.data?.gm_code,
-                            team: selectedTeam?.data?.group_name,
+                            gm_code: sourceData?.data?.gm_code,
+                            team: sourceData?.data?.group_name,
                             year: filters.year,
                             quarter: filters.quarter,
-                        }
+                        },
+                        validateStatus: () => true,
                     }
-                )
-                if (status === 200 && data?.data?.zone_performance?.length > 0) {
-                    setHistoryData(data)
-                }else if(status === 204){
-                    setHistoryData(data)
+                );
+
+                if (response.status === 200) {
+                    setHistoryData(response.data);
+                }
+                else if (response.status === 204) {
+                    // FRONTEND FALLBACK
+                    setHistoryData({
+                        data: {
+                            selected_year: filters.year,
+                            selected_quarter: filters.quarter,
+                            zone_performance: [],
+                            available_years: historyData?.data?.available_years || [],
+                            available_quarters: historyData?.data?.available_quarters || [],
+                        }
+                    });
                 }
 
             } catch (error) {
                 console.log(error);
-
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
-        }
-        fetchHistoryData()
-    }, [selectedTeam, page, perPage, filters])
+        };
+
+        fetchHistoryData();
+
+    }, [selectedTeam, page, perPage, filters]);
 
     return (
         <div className="border rounded-xl p-4 bg-[--bg-color] flex flex-col gap-4 border-[--border-color]">
@@ -78,7 +94,7 @@ const ZoneHistorySection = () => {
                     historyData={historyData?.data}
                     selectedYear={filters.year}
                     selectedQuarter={filters.quarter}
-                    onApply={(values)=>{
+                    onApply={(values) => {
                         setFilters(values)
                     }}
                 />
@@ -92,6 +108,14 @@ const ZoneHistorySection = () => {
                     perPage={perPage}
                     loading={loading}
                 />
+                {/* Show message when no data */}
+                {!loading && history.length === 0 && (
+                    <div className="text-center py-8 text-gray-500">
+                        {historyData?.data?.data ?
+                            "No zone performance data available for selected filters" :
+                            "No data available"}
+                    </div>
+                )}
             </div>
 
             <Pagination

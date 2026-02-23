@@ -1,5 +1,6 @@
 import React from 'react'
 import TableWrapper from './TableWrapper'
+import HistoryButton from '@/components/ui/HistoryButton';
 
 export const metadata = {
   title: "Zone - Award ChampoinShip",
@@ -7,7 +8,8 @@ export const metadata = {
 
 const page = () => {
     return (
-        <section className='wrapper max-w-screen-sm mx-auto px-4 py-2'>
+        <section className='wrapper max-w-screen-sm mx-auto flex flex-col gap-6'>
+            <HistoryButton url={'m-zone-history'}/>
             <TableWrapper />
         </section>
     )

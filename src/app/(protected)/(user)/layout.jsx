@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { RiBuildingLine } from "react-icons/ri";
 import BackButton from "@/components/ui/BackButton";
+import HistoryButton from "@/components/ui/HistoryButton";
 
 export default function UserLayout({ children }) {
   const router = useRouter();
@@ -40,14 +41,19 @@ export default function UserLayout({ children }) {
         !isAllowed && (
           <section className="wrapper max-w-screen-sm mx-auto px-4 mt-2">
             <div className="flex justify-between">
-              <BackButton/>
+              <BackButton />
 
-              {pathname !== "/m-brand" && (
-                <Button
-                  onClick={() => router.push("/m-brand")}
-                  className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition"
-                ><RiBuildingLine size={16} />Brand</Button>
-              )}
+              <div className="flex gap-2.5">
+                
+                {pathname === "/m-zone" && (
+                  <Button
+                    onClick={() => router.push("/m-brand")}
+                    className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition"
+                  ><RiBuildingLine size={16} />Brand</Button>
+                )}
+                
+
+              </div>
             </div>
           </section>
         )
