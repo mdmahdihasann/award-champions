@@ -49,9 +49,12 @@ const BrandSection = () => {
 
     return (
         <>
-            <section className='wrapper max-w-screen-sm mx-auto p-4'>
-                <HistoryButton url={`${auth?.work_area_t === "admin" ? "brand-history" : "m-brand-history"}`} />
-                <div className='grid grid-cols-4 gap-2 mt-5'>
+            <section className='wrapper max-w-screen-sm mx-auto p-4 flex flex-col gap-5'>
+                {
+                    auth?.work_area_t === "admin" && <HistoryButton />
+                }
+
+                <div className='grid grid-cols-4 gap-2'>
                     <BrandButton setActiveBrand={setActiveBrand} activeBrand={activeBrand} brandData={brandData} />
                 </div>
             </section>

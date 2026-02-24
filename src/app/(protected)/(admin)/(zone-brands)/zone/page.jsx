@@ -9,7 +9,7 @@ const page = () => {
   return (
     <>
       <section className="wrapper max-w-screen-sm mx-auto flex flex-col gap-6">
-        <HistoryButton url={'zone-history'}/>
+        <HistoryButton/>
         <TableWrapper />
       </section>
     </>

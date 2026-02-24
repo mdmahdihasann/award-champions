@@ -1,4 +1,5 @@
 import BrandHistorySection from '@/components/brand/BrandHistorySection';
+import BackButton from '@/components/ui/BackButton';
 import React from 'react'
 
 export const metadata = {

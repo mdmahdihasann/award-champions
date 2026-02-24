@@ -17,6 +17,7 @@ export default function UserLayout({ children }) {
     auth?.data?.designation_id === 1 ||
     auth?.data?.designation_id === 2;
 
+
   useEffect(() => {
     if (!auth) {
       router.replace("/login");
@@ -44,15 +45,15 @@ export default function UserLayout({ children }) {
               <BackButton />
 
               <div className="flex gap-2.5">
-                
+
                 {pathname === "/m-zone" && (
                   <Button
                     onClick={() => router.push("/m-brand")}
                     className="flex px-4 text-sm gap-1.5 bg-[--bg-color] border border-[--border-color] hover:bg-[--primary-color] hover:text-white items-center transition"
                   ><RiBuildingLine size={16} />Brand</Button>
                 )}
-                
 
+                <HistoryButton />
               </div>
             </div>
           </section>
